@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  --color-background: #000000;
+  --color-main: #3061e3;
+  --color-accent: #da2528;
+  --color-white: #ffffff;
+  --size-very-small: .75em;
+  --size-small: 1em;
+  --size-medium: 1.5em;
+  --size-big: 2em;
+  --size-very-very-big: 3.5em;
+  --rounding-small: .5em;
+  --rounding-medium: 1.25em;
+  --rouonding-big: 1.75em;
+  --rouonding-total: 50%;
+  --font-main: "Roboto", sans-serif;
+  --font-secondary: "Montserrat", sans-serif;
+}

@@ -1,0 +1,11 @@
+.home {
+    background-color: hotpink;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .image {
+        display: block;
+        align-self: center;
+    }
+}
