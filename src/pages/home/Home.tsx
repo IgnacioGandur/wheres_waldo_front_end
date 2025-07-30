@@ -2,6 +2,7 @@ import classes from "./Home.module.css";
 import image from "../../assets/images/image.jpg"
 import { useState, useEffect, useRef } from "react";
 import ClickMenu from "./components/click-menu/ClickMenu";
+import data from "../../assets/data/image-coordinates.json";
 
 const Home = () => {
     const imageRef = useRef<HTMLImageElement | null>(null);
@@ -10,6 +11,14 @@ const Home = () => {
         x: 0,
         y: 0,
     });
+    const [target, setTarget] = useState({
+        xStart: Math.ceil(data.points[0].x / data.image.width * 100),
+        xEnd: Math.ceil(data.points[1].x / data.image.width * 100),
+        yStart: Math.ceil(data.points[1].y / data.image.height * 100),
+        yEnd: Math.ceil(data.points[2].y / data.image.height * 100),
+    });
+
+    console.log("target boundaries", target);
 
     const handleClickCoordinates = (x: number, y: number) => {
         setClickCoordinates({
@@ -18,9 +27,42 @@ const Home = () => {
         });
     };
 
+    const checkIfClickWasInTarget = (x: number, y: number) => {
+        // Check if click is inside square of coordinates.
+        // Check if click is between point x-start and x-end.
+        // check if click is between point x-end and y-end.
+        // check if click is between point y-end and y-start.
+        // check if click is between point y-start and x-start.
+        const success = x >= target.xStart
+            && x <= target.xEnd
+            && y >= target.yStart
+            && y <= target.yEnd;
+        console.log(success ? "Success" : "fail");
+    }
+
     const handleImageClick = (e: React.MouseEvent) => {
         // Get the user's cursor position on click.
         handleClickCoordinates(e.clientX, e.clientY);
+        const rect = imageRef.current?.getBoundingClientRect();
+        if (rect) {
+            // Get the click's location inside the image from top-left corner.
+            const relativeXImageClick = Math.floor(e.clientX - rect.x);
+            const relativeYImageClick = Math.floor(e.clientY - rect.y);
+
+            // Get image's size
+            const imageWidth = rect?.width;
+            const imageHeight = rect?.height;
+
+            // Transform the click's position into percentages so it works in responsive too.
+            const percentageX = Math.ceil((relativeXImageClick / imageWidth) * 100);
+            const percentageY = Math.ceil((relativeYImageClick / imageHeight) * 100);
+
+            console.log("clicked percentage x", percentageX);
+            console.log("clicked percentage y", percentageY);
+
+            checkIfClickWasInTarget(percentageX, percentageY);
+        }
+
         setShowClickMenu(true);
     }
 
