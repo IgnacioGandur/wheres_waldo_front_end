@@ -18,8 +18,6 @@ const Home = () => {
         yEnd: Math.ceil(data.points[2].y / data.image.height * 100),
     });
 
-    console.log("target boundaries", target);
-
     const handleClickCoordinates = (x: number, y: number) => {
         setClickCoordinates({
             x,
@@ -56,9 +54,6 @@ const Home = () => {
             // Transform the click's position into percentages so it works in responsive too.
             const percentageX = Math.ceil((relativeXImageClick / imageWidth) * 100);
             const percentageY = Math.ceil((relativeYImageClick / imageHeight) * 100);
-
-            console.log("clicked percentage x", percentageX);
-            console.log("clicked percentage y", percentageY);
 
             checkIfClickWasInTarget(percentageX, percentageY);
         }

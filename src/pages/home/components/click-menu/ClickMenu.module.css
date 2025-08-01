@@ -1,6 +1,46 @@
 .click-menu {
-    width: 50px;
-    height: 50px;
-    border: 2px solid yellow;
+    /* width: 50px; */
+    /* height: 50px; */
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-minimum);
+    border-radius: var(--rounding-small);
+    background-color: var(--color-background);
+    padding: var(--size-minimum);
+
+    .who-that {
+        text-wrap: nowrap;
+        text-align: center;
+        font-weight: var(--font-thick);
+    }
+
+    .horizontal-separator {
+        width: 90%;
+        align-self: center;
+        height: 2px;
+        background-color: var(--color-white-dimmed-2);
+        border-radius: var(--rounding-small);
+    }
+
+    .options {
+        display: flex;
+        flex-direction: column;
+
+        .option {
+            background-color: var(--color-background);
+            color: var(--color-font);
+            font-size: var(--font-size-normal);
+            padding: var(--size-minimum) calc(var(--size-minimum) * 2);
+            font-weight: var(--font-thick);
+            border: none;
+            transition: var(--transition-fast);
+            cursor: pointer;
+            border-radius: calc(var(--rounding-small) / 2);
+        }
+
+        .option:hover {
+            background-color: var(--color-success-dimmed);
+        }
+    }
 }

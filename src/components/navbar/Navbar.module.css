@@ -3,4 +3,21 @@
     padding: var(--size-small);
     display: flex;
     justify-content: space-between;
+
+    .links {
+        display: flex;
+        gap: var(--size-medium);
+        padding: var(--size-very-small);
+
+        .link {
+            padding: var(--size-small);
+            display: flex;
+            align-items: center;
+            flex-direction: row-reverse;
+            text-decoration: none;
+            color: var(--color-font);
+            gap: var(--size-very-small);
+            font-weight: var(--font-thick);
+        }
+    }
 }

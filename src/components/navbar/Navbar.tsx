@@ -1,4 +1,24 @@
-import classes from "./Navbar.module.css";
+import styles from "./Navbar.module.css";
+import { NavLink } from "react-router";
+
+type LinksTypes = {
+    text: string,
+    icon: string,
+    href: string
+};
+
+const links: LinksTypes[] = [
+    {
+        text: "Home",
+        icon: "home",
+        href: "/",
+    },
+    {
+        text: "Games",
+        icon: "buttons_alt",
+        href: "/games",
+    },
+];
 
 type NavbarTypes = {
     toggleVisibility: () => void
@@ -6,10 +26,24 @@ type NavbarTypes = {
 
 const Navbar = ({ toggleVisibility }: NavbarTypes) => {
     return <nav
-        className={classes.navbar}
+        className={styles.navbar}
     >
-        <div className={classes.logo}>
+        <div className={styles.logo}>
             <h1>Where's Sonic?</h1>
+        </div>
+        <div className={styles.links}>
+            {links.map((link) => {
+                return <NavLink
+                    className={styles.link}
+                    key={link.text}
+                    to={link.href}
+                >
+                    {link.text}
+                    <span className="material-symbols-sharp">
+                        {link.icon}
+                    </span>
+                </NavLink>
+            })}
         </div>
         <button
             onClick={toggleVisibility}

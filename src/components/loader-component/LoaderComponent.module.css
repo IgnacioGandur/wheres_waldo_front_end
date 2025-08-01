@@ -1,0 +1,19 @@
+.loader {
+    flex: 1;
+    padding: var(--size-medium);
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-medium);
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    .message {
+        font-weight: var(--font-thick);
+    }
+
+    .message:first-letter {
+        text-transform: capitalize;
+    }
+}

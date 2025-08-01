@@ -1,0 +1,10 @@
+.select-game {
+    background-color: peachpuff;
+
+    .error {
+        background-color: var(--color-error-dimmed);
+        padding: var(--size-small);
+        text-align: center;
+        font-weight: var(--font-thick);
+    }
+}
