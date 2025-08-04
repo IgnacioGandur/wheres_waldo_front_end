@@ -1,46 +1,105 @@
 .click-menu {
-    /* width: 50px; */
-    /* height: 50px; */
     position: absolute;
     display: flex;
     flex-direction: column;
-    gap: var(--size-minimum);
-    border-radius: var(--rounding-small);
+    gap: var(--size-small);
+    /* border-radius: var(--rounding-small); */
     background-color: var(--color-background);
-    padding: var(--size-minimum);
+    padding: var(--size-small);
+    z-index: 999;
+    border: 2px solid var(--color-font);
+    font-family: var(--font-secondary);
 
-    .who-that {
-        text-wrap: nowrap;
-        text-align: center;
-        font-weight: var(--font-thick);
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--size-small);
+
+        .who-that {
+            font-size: var(--font-size-big);
+            text-wrap: nowrap;
+            text-align: center;
+            font-weight: var(--font-thick);
+        }
+
+        .close {
+            background-color: transparent;
+            padding: var(--size-minimum);
+            border: 2px solid var(--color-font);
+            color: var(--color-font);
+            display: grid;
+            place-items: center;
+            border-radius: var(--rounding-total);
+            transition: var(--transition-fast);
+            cursor: pointer;
+
+            span {
+                font-size: 1rem;
+            }
+        }
+
+        .close:hover {
+            background-color: var(--color-font);
+            color: black;
+            transform: scale(1.25);
+        }
     }
 
     .horizontal-separator {
-        width: 90%;
+        width: 100%;
         align-self: center;
         height: 2px;
-        background-color: var(--color-white-dimmed-2);
+        background-color: var(--color-font);
         border-radius: var(--rounding-small);
     }
 
     .options {
         display: flex;
         flex-direction: column;
+        align-items: stretch;
+        gap: var(--size-minimum);
 
         .option {
             background-color: var(--color-background);
             color: var(--color-font);
             font-size: var(--font-size-normal);
-            padding: var(--size-minimum) calc(var(--size-minimum) * 2);
+            padding: var(--size-very-small);
             font-weight: var(--font-thick);
             border: none;
             transition: var(--transition-fast);
             cursor: pointer;
-            border-radius: calc(var(--rounding-small) / 2);
+            /* border-radius: calc(var(--rounding-small) / 2); */
+            display: flex;
+            align-items: center;
+            gap: var(--size-small);
+
+            .image {
+                width: 50px;
+                height: 50px;
+                border-radius: var(--rounding-total);
+            }
+
+            .vertical-separator {
+                min-width: 2px;
+                height: 3rem;
+                background-color: var(--color-font);
+                transition: var(--transition-fast);
+            }
+
+            .name {
+                flex: 1;
+                text-align: start;
+            }
         }
 
         .option:hover {
-            background-color: var(--color-success-dimmed);
+            background-color: var(--color-font);
+            color: black;
+
+            .vertical-separator {
+                background-color: black;
+            }
         }
     }
 }

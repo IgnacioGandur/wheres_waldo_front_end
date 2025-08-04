@@ -2,24 +2,20 @@ import { AnimatePresence, motion } from "motion/react";
 import styles from "./ClickMenu.module.css";
 import { useEffect, useState } from "react";
 
-type Point = {
-    x: number,
-    y: number,
-    name: string,
-};
-
 type Character = {
     name: string,
-    points: Point[]
+    imageName: string,
 };
 
 type ClickMenuTypes = {
     characters: Character[],
+    gameSlug: string,
     handleUserChoiceSubmition: (character: string) => void,
 };
 
 const ClickMenu = ({
     characters,
+    gameSlug,
     handleUserChoiceSubmition
 }: ClickMenuTypes) => {
     const [showClickMenu, setShowClickMenu] = useState(false);
@@ -32,7 +28,7 @@ const ClickMenu = ({
     useEffect(() => {
         const handleDocumentClick = (e: MouseEvent) => {
             const target = e.target as HTMLElement;
-            if (!target.getAttribute("data-game-image")) {
+            if (!target.classList.contains("magnifier-image")) {
                 setShowClickMenu(false);
             } else {
                 setClickCoordinates({
@@ -73,15 +69,20 @@ const ClickMenu = ({
                 exit={{ scale: 0, opacity: 0 }}
                 key="click-menu"
             >
-                <button
-                    onClick={() => setShowClickMenu(false)}
-                    className={styles["close"]}
-                >
-                    Close
-                </button>
-                <p className={styles["who-that"]}>
-                    Who's that?
-                </p>
+                <div className={styles["header"]}>
+                    <p className={styles["who-that"]}>
+                        Who's that?
+                    </p>
+                    <button
+                        title="Close character selection menu"
+                        onClick={() => setShowClickMenu(false)}
+                        className={styles["close"]}
+                    >
+                        <span className="material-symbols-sharp">
+                            close
+                        </span>
+                    </button>
+                </div>
                 <div className={styles["horizontal-separator"]}></div>
                 <div className={styles["options"]}>
                     {characters.map((character: Character) => {
@@ -92,7 +93,17 @@ const ClickMenu = ({
                                 handleUserChoiceSubmition(character.name);
                             }}
                         >
-                            {character.name}
+                            <img
+                                className={styles["image"]}
+                                src={`/images/games/${gameSlug}/characters/${character.imageName}`}
+                                alt={character.name}
+                            />
+                            {/* <div className={styles["vertical-separator"]}></div> */}
+                            <span
+                                className={styles["name"]}
+                            >
+                                {character.name}
+                            </span>
                         </button>
                     })}
                 </div>

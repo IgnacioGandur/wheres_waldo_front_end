@@ -1,7 +1,7 @@
 import classes from "./Home.module.css";
 import image from "../../assets/images/image.jpg"
 import { useState, useEffect, useRef } from "react";
-import ClickMenu from "./components/click-menu/ClickMenu";
+// import ClickMenu from "./components/click-menu/ClickMenu";
 import data from "../../assets/data/image-coordinates.json";
 
 const Home = () => {
@@ -87,13 +87,13 @@ const Home = () => {
             src={image}
             alt="Image"
         />
-        {showClickMenu && (
-            <ClickMenu
-                showClickMenu={showClickMenu}
-                x={clickCoordinates.x}
-                y={clickCoordinates.y}
-            />
-        )}
+        {/* {showClickMenu && ( */}
+        {/*     <ClickMenu */}
+        {/*         showClickMenu={showClickMenu} */}
+        {/*         x={clickCoordinates.x} */}
+        {/*         y={clickCoordinates.y} */}
+        {/*     /> */}
+        {/* )} */}
     </main>
 }
 

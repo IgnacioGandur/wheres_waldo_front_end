@@ -4,7 +4,7 @@ import {
     useLoaderData,
     useFetcher
 } from "react-router";
-import ClickMenu from "../home/components/click-menu/ClickMenu";
+// import ClickMenu from "../home/components/click-menu/ClickMenu";
 import {
     useRef,
     useState,
@@ -108,10 +108,10 @@ const Game = () => {
                 Start the game!
             </button>
         </div>
-        <ClickMenu
-            characters={characters}
-            handleUserChoiceSubmition={handleUserChoiceSubmition}
-        />
+        {/* <ClickMenu */}
+        {/*     characters={characters} */}
+        {/*     handleUserChoiceSubmition={handleUserChoiceSubmition} */}
+        {/* /> */}
     </div>
 }
 

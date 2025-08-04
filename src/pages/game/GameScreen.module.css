@@ -48,12 +48,15 @@
                 flex-direction: row;
                 justify-content: center;
                 gap: var(--size-small);
+                transform-style: preserve-3d;
+                perspective: 1000px;
 
                 .character {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    gap: var(--size-minimum);
+                    gap: var(--size-small);
+                    transition: var(--transition-normal);
 
                     .character-name {
                         font-size: var(--font-size-normal);
@@ -66,6 +69,7 @@
                         object-fit: cover;
                         object-position: center;
                         border-radius: var(--rounding-total);
+                        transition: var(--transition-normal);
                     }
                 }
             }

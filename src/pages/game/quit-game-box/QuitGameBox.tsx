@@ -22,7 +22,12 @@ const QuitGameBox = () => {
             exit={initialAndExit}
         >
             <p className={styles["message"]}>
-                Quit game?
+                <span>
+                    Quit game?
+                </span>
+                <span
+                    className={styles["warning"]}
+                >(This will erase all your progress)</span>
             </p>
             <button
                 className={styles["confirm"]}

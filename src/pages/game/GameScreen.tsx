@@ -3,8 +3,13 @@ import {
     AnimatePresence,
     motion
 } from "motion/react"
-import { useState } from "react";
+import { useState, type ComponentType } from "react";
 import QuitGameBox from "./quit-game-box/QuitGameBox";
+import MagnifierImport from "react-magnifier";
+import ClickMenu from "../home/components/click-menu/ClickMenu";
+
+// NOTE: This is to shut up the Typescript warning about old react in the react-magnifier package.
+const Magnifier = MagnifierImport as unknown as ComponentType<any>;
 
 type Character = {
     imageName: string,
@@ -26,11 +31,6 @@ const GameScreen = ({
     characters,
     toggleGameStatus,
 }: GameScreen) => {
-    const [showQuitGame, setShowQuitGame] = useState(false);
-    const toggleQuitGameBox = () => {
-        setShowQuitGame((prevState) => !prevState);
-    };
-
     return <AnimatePresence>
         {gameStarted && (
             <motion.section
@@ -39,6 +39,11 @@ const GameScreen = ({
                 animate={{ scale: 1, opacity: 1, }}
                 exit={{ scale: 0, opacity: 0, }}
             >
+                <ClickMenu
+                    characters={characters}
+                    gameSlug={gameSlug}
+                    handleUserChoiceSubmition={() => console.log("choosed")}
+                />
                 <header className={styles["header"]}>
                     <div className={styles["timer"]}>
                         <h2>Timer</h2>
@@ -67,10 +72,10 @@ const GameScreen = ({
                     </div>
                     <QuitGameBox />
                 </header>
-                <img
-                    className={styles["main-game-image"]}
+                <Magnifier
                     src={gameImageSrc}
-                    alt="Game image."
+                    mgShowOverflow={false}
+                    className={styles["main-game-image"]}
                 />
             </motion.section>
         )}

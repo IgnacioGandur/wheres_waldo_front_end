@@ -33,16 +33,28 @@
     .message {
         grid-area: message;
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: var(--size-minimum);
+
+        span:first-of-type {
+            font-size: var(--font-size-big);
+        }
+
+        .warning {
+            font-size: var(--font-size-medium);
+        }
     }
 
     .confirm,
     .cancel {
-        padding: var(--size-minimum);
         border: 1px solid var(--color-font);
         background-color: transparent;
         color: var(--color-font);
-        padding: var(--size-minimum) calc(var(--size-minimum) * 2);
+        padding: var(--size-very-small);
         font-size: var(--font-size-normal);
+        transition: var(--transition-fast);
+        cursor: pointer;
     }
 
     .confirm {
@@ -51,5 +63,15 @@
 
     .cancel {
         grid-area: cancel;
+    }
+
+    .confirm:hover,
+    .confirm:focus,
+    .confirm:focus-visible,
+    .cancel:hover,
+    .cancel:focus,
+    .cancel:focus-visible {
+        background-color: var(--color-font);
+        color: black;
     }
 }
