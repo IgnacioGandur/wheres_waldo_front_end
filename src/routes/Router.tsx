@@ -33,7 +33,7 @@ const router = createBrowserRouter([
                 />
             },
             {
-                path: "/games/:gameName",
+                path: "/games/:gameSlug",
                 Component: Game,
                 loader: gameLoader,
                 hydrateFallbackElement: <LoaderComponent

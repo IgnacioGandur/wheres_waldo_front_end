@@ -10,6 +10,7 @@ const selectGameLoader = async () => {
 
         const gamesReponse = await fetch(gamesUrl, fetchOptions);
         const gamesResult = await gamesReponse.json();
+        console.log("gamesResult", gamesResult);
 
         if (!gamesResult.success) {
             return {

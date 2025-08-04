@@ -13,6 +13,10 @@
   --color-success-dimmed: #4ecdc466;
   --color-error: #e52b50;
   --color-error-dimmed: #e52b5066;
+  --color-black-dimmed-soft: #00000033;
+  --color-black-dimmed-medium: #00000066;
+  --color-black-dimmed-strong: #00000099;
+  --color-black-dimmed-very-strong: #000000bb;
   --size-minimum: .25em;
   --size-very-small: .75em;
   --size-small: 1em;

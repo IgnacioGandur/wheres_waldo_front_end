@@ -1,10 +1,80 @@
 .select-game {
     background-color: peachpuff;
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-small);
 
     .error {
         background-color: var(--color-error-dimmed);
         padding: var(--size-small);
         text-align: center;
         font-weight: var(--font-thick);
+    }
+
+    .games-preview {
+        display: grid;
+        grid-template-columns: repeat(2, 48%);
+        grid-template-rows: repeat(2, 48%);
+        gap: var(--size-medium);
+        background-color: orchid;
+        flex: 1;
+        padding: var(--size-medium);
+
+        .game {
+            display: flex;
+            flex-direction: column;
+            gap: var(--size-medium);
+            align-items: center;
+            text-align: center;
+            /* overflow: hidden; */
+            position: relative;
+            border: 3px solid transparent;
+            transition: var(--transition-fast);
+            border-radius: var(--rounding-small);
+            filter: grayscale(100%);
+
+            .background-image {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+                z-index: 5;
+            }
+
+            .overlay {
+                background-color: var(--color-black-dimmed-soft);
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                padding: var(--size-small);
+                position: absolute;
+                transform: translate(-50%, -50%);
+                top: 50%;
+                left: 50%;
+                z-index: 10;
+                height: 100%;
+                width: 100%;
+                color: var(--color-font);
+                transition: var(--transition-fast);
+
+                .difficulty {
+                    font-weight: var(--font-thick);
+                    padding: var(--size-small);
+                    background-color: var(--color-black-dimmed-strong);
+                }
+            }
+        }
+
+        .game:hover,
+        .game:focus,
+        .game:focus-visible {
+            border: 3px solid var(--color-font);
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            filter: grayscale(0%);
+        }
     }
 }

@@ -12,10 +12,24 @@ const SelectGame = () => {
             {loaderData.games.map((game: any) => {
                 return <NavLink
                     key={game.name}
-                    className="game"
-                    to={`/games/${game.name}`}
+                    className={styles["game"]}
+                    to={`/games/${game.slug}`}
                 >
-                    <h2>{game.name}</h2>
+                    <img
+                        className={styles["background-image"]}
+                        src={`/images/previews/${game.filename}`.split(".")[0] + ".jpg"}
+                        alt={game.name}
+                    />
+                    <div className={styles["overlay"]}>
+                        <h2
+                            className={styles["title"]}
+                        >
+                            {game.name}
+                        </h2>
+                        <p className={styles[`difficulty`]}>
+                            {game.difficulty}
+                        </p>
+                    </div>
                 </NavLink>
             })}
         </div>

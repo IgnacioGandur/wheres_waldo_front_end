@@ -2,7 +2,7 @@ import type { LoaderFunctionArgs } from "react-router";
 
 const gameLoader = async ({ params }: LoaderFunctionArgs) => {
     try {
-        const gameUrl: string = `${import.meta.env.VITE_API_BASE}/games/${params.gameName}`;
+        const gameUrl: string = `${import.meta.env.VITE_API_BASE}/games/${params.gameSlug}`;
         const fetchOptions: RequestInit = {
             method: "GET",
             headers: {
@@ -17,6 +17,7 @@ const gameLoader = async ({ params }: LoaderFunctionArgs) => {
                 message: gameResult.message
             }
         }
+        console.log("The content of game result is:", gameResult);
         return gameResult;
     } catch (error) {
         return {

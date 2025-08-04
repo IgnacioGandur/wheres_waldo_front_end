@@ -11,6 +11,8 @@ import {
     useEffect
 } from "react";
 
+import GameScreen from "./GameScreen";
+
 const Game = () => {
     const fetcher = useFetcher();
     const params = useParams();
@@ -24,6 +26,11 @@ const Game = () => {
         y: 0,
         character: ""
     });
+    const [gameStarted, setGameStarted] = useState(false);
+
+    const toggleGameStatus = () => {
+        setGameStarted(prevStatus => !prevStatus);
+    }
 
     const handleUserChoiceSubmition = (character: string) => {
         fetcher.submit(
@@ -36,7 +43,7 @@ const Game = () => {
             },
             {
                 method: "POST",
-                action: `/games/${params.gameName}`,
+                action: `/games/${params.gameSlug}`,
             }
         );
     };
@@ -71,24 +78,36 @@ const Game = () => {
     }, []);
 
     return <div className={styles["game"]}>
-        <h1>Game details</h1>
-        <div className={styles["characters-to-find"]}>
-            {characters.map((character: any) => {
-                return <p
-                    key={character.name}
-                    className={styles["character"]}
-                >
-                    {character.name}
-                </p>
-            })}
-        </div>
-        <img
-            className={styles["image"]}
-            data-game-image
-            ref={imageRef}
-            src={`/images/${params.gameName === "Where's waldo" ? "wheres-waldo.jpg" : null}`}
-            alt="Where's Waldo"
+        <GameScreen
+            gameImageSrc={`/images/games/${loaderData.game.slug}/${loaderData.game.filename}`}
+            gameSlug={loaderData.game.slug}
+            gameStarted={gameStarted}
+            characters={characters}
+            toggleGameStatus={toggleGameStatus}
         />
+        <div
+            style={{
+                backgroundImage: `url("/images/games/${loaderData.game.slug}/${loaderData.game.filename}")`
+            }}
+            className={styles["background-image"]}
+        >
+        </div>
+        <div className={styles["content"]}>
+            <h1
+                className={styles["title"]}
+            >
+                Find all the characters in the picture!
+            </h1>
+            <p
+                className={styles["rules"]}
+            >The rules are simple! Find all the characters in the list as fast as you can.</p>
+            <button
+                className={styles["start-game"]}
+                onClick={() => setGameStarted(true)}
+            >
+                Start the game!
+            </button>
+        </div>
         <ClickMenu
             characters={characters}
             handleUserChoiceSubmition={handleUserChoiceSubmition}

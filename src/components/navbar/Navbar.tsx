@@ -18,6 +18,11 @@ const links: LinksTypes[] = [
         icon: "buttons_alt",
         href: "/games",
     },
+    {
+        text: "Leaderboard",
+        icon: "trophy",
+        href: "/leaderboards",
+    },
 ];
 
 type NavbarTypes = {

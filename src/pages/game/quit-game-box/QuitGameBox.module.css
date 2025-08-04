@@ -1,0 +1,55 @@
+.quit-game {
+    width: 50px;
+    height: 50px;
+    border-radius: var(--rounding-total);
+    display: grid;
+    place-items: center;
+    background-color: var(--color-black-dimmed-strong);
+    color: var(--color-font);
+    border: 2px solid var(--color-font);
+    transition: var(--transition-fast);
+    cursor: pointer;
+}
+
+.close-game:hover,
+.close-game:focus,
+.close-game:focus-visible {
+    background-color: var(--color-font);
+    color: black;
+    transform: scale(1.1);
+}
+
+.confirm-quit-box {
+    display: grid;
+    grid-template-areas:
+        "message message"
+        "confirm cancel"
+    ;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--size-small);
+    padding: var(--size-small);
+    border: 1px solid var(--color-font);
+
+    .message {
+        grid-area: message;
+        text-align: center;
+    }
+
+    .confirm,
+    .cancel {
+        padding: var(--size-minimum);
+        border: 1px solid var(--color-font);
+        background-color: transparent;
+        color: var(--color-font);
+        padding: var(--size-minimum) calc(var(--size-minimum) * 2);
+        font-size: var(--font-size-normal);
+    }
+
+    .confirm {
+        grid-area: confirm;
+    }
+
+    .cancel {
+        grid-area: cancel;
+    }
+}
