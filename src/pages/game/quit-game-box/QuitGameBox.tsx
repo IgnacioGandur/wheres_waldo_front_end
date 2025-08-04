@@ -6,7 +6,13 @@ import {
 import styles from "./QuitGameBox.module.css";
 import { useState } from "react";
 
-const QuitGameBox = () => {
+type QuitGameType = {
+    quitGameFunction: () => void,
+}
+
+const QuitGameBox = ({
+    quitGameFunction
+}: QuitGameType) => {
     const [showBox, setShowBox] = useState(false);
     const toggleBox = () => {
         setShowBox((prevState) => !prevState);
@@ -30,6 +36,7 @@ const QuitGameBox = () => {
                 >(This will erase all your progress)</span>
             </p>
             <button
+                onClick={quitGameFunction}
                 className={styles["confirm"]}
             >
                 Yes

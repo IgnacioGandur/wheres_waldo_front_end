@@ -1,0 +1,23 @@
+.notification {
+    z-index: 999;
+    width: fit-content;
+    height: 3rem;
+    font-size: --var(--font-size-big);
+    position: fixed;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    .message {
+        padding: var(--size-medium) calc(var(--size-medium) * 2);
+        border: 2px solid var(--color-font);
+    }
+
+    .message.found {
+        background-color: var(--color-success);
+    }
+
+    .message.not-found {
+        background-color: var(--color-error);
+    }
+}

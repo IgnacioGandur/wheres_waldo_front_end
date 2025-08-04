@@ -11,6 +11,7 @@ const SelectGame = () => {
         <div className={styles["games-preview"]}>
             {loaderData.games.map((game: any) => {
                 return <NavLink
+                    viewTransition
                     key={game.name}
                     className={styles["game"]}
                     to={`/games/${game.slug}`}

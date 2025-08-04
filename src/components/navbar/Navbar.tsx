@@ -34,11 +34,12 @@ const Navbar = ({ toggleVisibility }: NavbarTypes) => {
         className={styles.navbar}
     >
         <div className={styles.logo}>
-            <h1>Where's Sonic?</h1>
+            <h1>Find The Character</h1>
         </div>
         <div className={styles.links}>
             {links.map((link) => {
                 return <NavLink
+                    viewTransition
                     className={styles.link}
                     key={link.text}
                     to={link.href}

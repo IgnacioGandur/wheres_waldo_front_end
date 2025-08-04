@@ -3,7 +3,11 @@ import {
     AnimatePresence,
     motion
 } from "motion/react"
-import { useState, type ComponentType } from "react";
+import {
+    type ComponentType
+} from "react";
+import Notification from "../../components/notification/Notification";
+import { useFetcher } from "react-router";
 import QuitGameBox from "./quit-game-box/QuitGameBox";
 import MagnifierImport from "react-magnifier";
 import ClickMenu from "../home/components/click-menu/ClickMenu";
@@ -31,6 +35,8 @@ const GameScreen = ({
     characters,
     toggleGameStatus,
 }: GameScreen) => {
+    const fetcher = useFetcher();
+    console.log("the content of fetcher is:", fetcher);
     return <AnimatePresence>
         {gameStarted && (
             <motion.section
@@ -39,11 +45,8 @@ const GameScreen = ({
                 animate={{ scale: 1, opacity: 1, }}
                 exit={{ scale: 0, opacity: 0, }}
             >
-                <ClickMenu
-                    characters={characters}
-                    gameSlug={gameSlug}
-                    handleUserChoiceSubmition={() => console.log("choosed")}
-                />
+                <Notification fetcher={fetcher} time={3000} />
+                <ClickMenu fetcher={fetcher} />
                 <header className={styles["header"]}>
                     <div className={styles["timer"]}>
                         <h2>Timer</h2>
@@ -55,7 +58,10 @@ const GameScreen = ({
                         <h2>Can you find them?</h2>
                         <div className={styles["container"]}>
                             {characters.map((character) => {
-                                return <div className={styles["character"]}>
+                                return <div
+                                    key={character.name}
+                                    className={styles["character"]}
+                                >
                                     <h3
                                         className={styles["character-name"]}
                                     >
@@ -70,7 +76,9 @@ const GameScreen = ({
                             })}
                         </div>
                     </div>
-                    <QuitGameBox />
+                    <QuitGameBox
+                        quitGameFunction={toggleGameStatus}
+                    />
                 </header>
                 <Magnifier
                     src={gameImageSrc}

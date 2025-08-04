@@ -1,41 +1,34 @@
-import type { ActionFunctionArgs } from "react-router";
-
+import type { ActionFunctionArgs } from "react-router"
 const gameAction = async ({ request, params }: ActionFunctionArgs) => {
     try {
-        const gameName = params.gameName;
         const formData = await request.formData();
-        const imageWidth = formData.get("imageWidth");
-        const imageHeight = formData.get("imageHeight");
-        const x = formData.get("x");
-        const y = formData.get("y");
-        const character = formData.get("character");
-
-        const userChoiceUrl = `${import.meta.env.VITE_API_BASE}/games/${gameName}`;
+        const renderedImageWidth = formData.get("renderedImageWidth");
+        const renderedImageHeight = formData.get("renderedImageHeight");
+        const relativeClickY = formData.get("relativeClickY");
+        const relativeClickX = formData.get("relativeClickX");
+        const selectedCharacter = formData.get("selectedCharacter");
+        const fetchUrl = `${import.meta.env.VITE_API_BASE}/games/${params.gameSlug}`;
         const fetchOptions: RequestInit = {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                imageWidth,
-                imageHeight,
-                x,
-                y,
-                character,
-            }),
+                renderedImageWidth,
+                renderedImageHeight,
+                relativeClickX,
+                relativeClickY,
+                selectedCharacter
+            })
         };
-
-        console.log("fetch options is:", fetchOptions);
-        const userChoiceResponse = await fetch(userChoiceUrl, fetchOptions);
-        console.log("userChoiceResponse", userChoiceResponse);
-        const userChoiceResult = await userChoiceResponse.json();
-        console.log("userChoiceResult", userChoiceResult);
-
-        return userChoiceResult;
+        const fetchResponse = await fetch(fetchUrl, fetchOptions);
+        const fetchResult = await fetchResponse.json();
+        console.log("the content of fetchResult is:", fetchResult);
+        return fetchResult;
     } catch (error) {
         return {
             error: true,
-            message: "Server error. We were not able to reach the app's back-end, please try again later...",
+            message: "Server error. We were not able to check you pick, try again later please.",
         }
     }
 }

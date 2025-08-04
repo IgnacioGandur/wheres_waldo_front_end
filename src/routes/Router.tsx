@@ -33,6 +33,7 @@ const router = createBrowserRouter([
                 />
             },
             {
+                id: "current-game",
                 path: "/games/:gameSlug",
                 Component: Game,
                 loader: gameLoader,
