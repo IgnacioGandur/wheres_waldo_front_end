@@ -4,9 +4,6 @@
     height: 3rem;
     font-size: --var(--font-size-big);
     position: fixed;
-    top: 5%;
-    left: 50%;
-    transform: translateX(-50%);
 
     .message {
         padding: var(--size-medium) calc(var(--size-medium) * 2);

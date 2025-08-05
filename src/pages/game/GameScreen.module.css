@@ -19,6 +19,11 @@
         justify-items: center;
         gap: var(--size-small);
         padding: var(--size-small);
+        position: sticky;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        background-color: var(--color-black-dimmed-strong);
 
         >*>h2 {
             font-family: var(--font-secondary);
@@ -57,19 +62,45 @@
                     align-items: center;
                     gap: var(--size-small);
                     transition: var(--transition-normal);
+                    position: relative;
+
 
                     .character-name {
                         font-size: var(--font-size-normal);
                         font-weight: var(--font-normal-thickness);
                     }
 
-                    .image {
-                        width: 75px;
-                        height: 75px;
-                        object-fit: cover;
-                        object-position: center;
-                        border-radius: var(--rounding-total);
-                        transition: var(--transition-normal);
+                    .image-wrapper {
+                        position: relative;
+                        width: fit-content;
+                        height: fit-content;
+                        border-radius: 50%;
+                        border: 3px solid transparent;
+                        transition: var(--transition-fast);
+
+                        .image {
+                            width: 75px;
+                            height: 75px;
+                            object-fit: cover;
+                            object-position: center;
+                            border-radius: var(--rounding-total);
+                            transition: var(--transition-normal);
+                        }
+
+                        span {
+                            font-size: 2rem;
+                            position: absolute;
+                            bottom: -5%;
+                            left: -5%;
+                            color: var(--color-success);
+                            background-color: black;
+                            border-radius: 50%;
+                        }
+                    }
+
+                    .image-wrapper:has(.image.found) {
+                        border: 3px solid var(--color-success);
+                        animation: pop 750ms ease-in-out;
                     }
                 }
             }
@@ -98,7 +129,20 @@
     }
 
     .main-game-image {
+        position: relative;
         object-fit: cover;
         object-position: center;
+    }
+}
+
+@keyframes pop {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(2);
     }
 }

@@ -1,0 +1,17 @@
+.timer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-small);
+    align-items: center;
+    position: absolute;
+    top: var(--size-small);
+    left: var(--size-small);
+
+    h2 {
+        width: 100%;
+    }
+
+    .time {
+        font-size: var(--font-size-very-big);
+    }
+}

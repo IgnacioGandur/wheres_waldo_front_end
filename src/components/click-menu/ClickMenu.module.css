@@ -1,9 +1,8 @@
 .click-menu {
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: column;
     gap: var(--size-small);
-    /* border-radius: var(--rounding-small); */
     background-color: var(--color-background);
     padding: var(--size-small);
     z-index: 999;

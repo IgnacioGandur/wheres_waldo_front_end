@@ -4,13 +4,21 @@ import {
     motion
 } from "motion/react"
 import {
+    useState,
+    useEffect,
     type ComponentType
 } from "react";
 import Notification from "../../components/notification/Notification";
 import { useFetcher } from "react-router";
 import QuitGameBox from "./quit-game-box/QuitGameBox";
 import MagnifierImport from "react-magnifier";
-import ClickMenu from "../home/components/click-menu/ClickMenu";
+import ClickMenu from "../../components/click-menu/ClickMenu";
+import Timer from "../../components/timer/Timer";
+
+type Marker = {
+    x: number,
+    y: number
+};
 
 // NOTE: This is to shut up the Typescript warning about old react in the react-magnifier package.
 const Magnifier = MagnifierImport as unknown as ComponentType<any>;
@@ -20,7 +28,7 @@ type Character = {
     name: string,
 };
 
-type GameScreen = {
+type GameScreenProps = {
     gameImageSrc: string,
     gameSlug: string,
     gameStarted: boolean,
@@ -34,9 +42,42 @@ const GameScreen = ({
     gameStarted,
     characters,
     toggleGameStatus,
-}: GameScreen) => {
+}: GameScreenProps) => {
     const fetcher = useFetcher();
-    console.log("the content of fetcher is:", fetcher);
+    const [foundCharacters, setFoundCharacters] = useState<string[]>([]);
+    const [markers, setMarkers] = useState<Marker[]>([]);
+    const [latestClick, setLatestClick] = useState({ x: 0, y: 0 });
+    useEffect(() => {
+        if (fetcher.data?.success) {
+            const isAlreadyFound = foundCharacters.includes(fetcher.data.foundCharacter);
+            if (isAlreadyFound) {
+                return;
+            } else {
+                setFoundCharacters((prevCharacters) => ([
+                    ...prevCharacters,
+                    fetcher.data.foundCharacter,
+                ]))
+            }
+        }
+    }, [fetcher.data]);
+
+    const getLatestClickCoordinates = (x: number, y: number) => {
+        setLatestClick({
+            x,
+            y
+        });
+    };
+
+    // Check the actions.success field, if true push the successfull coordinate to the markers array.
+    useEffect(() => {
+        if (fetcher?.data?.success) {
+            setMarkers((prevMarkers) => ([
+                ...prevMarkers,
+                latestClick,
+            ]))
+        }
+    }, [fetcher.state]);
+
     return <AnimatePresence>
         {gameStarted && (
             <motion.section
@@ -45,15 +86,9 @@ const GameScreen = ({
                 animate={{ scale: 1, opacity: 1, }}
                 exit={{ scale: 0, opacity: 0, }}
             >
-                <Notification fetcher={fetcher} time={3000} />
-                <ClickMenu fetcher={fetcher} />
                 <header className={styles["header"]}>
-                    <div className={styles["timer"]}>
-                        <h2>Timer</h2>
-                        <p className={styles["time"]}>
-                            12:34
-                        </p>
-                    </div>
+                    <div className="empty"></div>
+                    <Timer />
                     <div className={styles["characters"]}>
                         <h2>Can you find them?</h2>
                         <div className={styles["container"]}>
@@ -67,11 +102,14 @@ const GameScreen = ({
                                     >
                                         {character.name}
                                     </h3>
-                                    <img
-                                        className={styles["image"]}
-                                        src={`/images/games/${gameSlug}/characters/${character.imageName}`}
-                                        alt={character.name}
-                                    />
+                                    <div className={styles["image-wrapper"]}>
+                                        <img
+                                            className={`${styles["image"]} ${foundCharacters.includes(character.name) && styles["found"]}`}
+                                            src={`/images/games/${gameSlug}/characters/${character.imageName}`}
+                                            alt={character.name}
+                                        />
+                                        {foundCharacters.includes(character.name) ? <span className="material-symbols-sharp">check_circle</span> : null}
+                                    </div>
                                 </div>
                             })}
                         </div>
@@ -80,11 +118,33 @@ const GameScreen = ({
                         quitGameFunction={toggleGameStatus}
                     />
                 </header>
+                <Notification fetcher={fetcher} time={3000} />
+                <ClickMenu
+                    fetcher={fetcher}
+                    foundCharacters={foundCharacters}
+                    getLatestClickCoordinates={getLatestClickCoordinates}
+                />
                 <Magnifier
+                    height="100%"
                     src={gameImageSrc}
                     mgShowOverflow={false}
                     className={styles["main-game-image"]}
                 />
+                {
+                    markers.map((marker) => {
+                        return <span
+                            style={{
+                                position: "fixed",
+                                top: `${marker.y}px`,
+                                left: `${marker.x}px`,
+                                zIndex: 999
+                            }}
+                            className="material-symbols-sharp"
+                        >
+                            distance
+                        </span>
+                    })
+                }
             </motion.section>
         )}
     </AnimatePresence>

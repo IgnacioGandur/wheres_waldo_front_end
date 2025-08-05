@@ -9,18 +9,18 @@ export type NotificationType = {
 };
 
 const initial: TargetAndTransition = {
+    y: -100,
     opacity: 0,
-    y: "100%"
 };
 
 const animate: TargetAndTransition = {
+    y: 5,
     opacity: 1,
-    y: 0,
 };
 
 const exit: TargetAndTransition = {
+    y: 100,
     opacity: 0,
-    y: "-100%"
 }
 
 const Notification = ({ fetcher, time }: NotificationType) => {

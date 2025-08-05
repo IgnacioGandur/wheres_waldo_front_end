@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "motion/react";
 import styles from "./ClickMenu.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useRouteLoaderData, type FetcherWithComponents } from "react-router";
 
 type Character = {
@@ -10,9 +10,16 @@ type Character = {
 
 type ClickMenuType = {
     fetcher: FetcherWithComponents<any>,
-}
+    foundCharacters: string[],
+    getLatestClickCoordinates: (x: number, y: number) => void
+};
 
-const ClickMenu = ({ fetcher }: ClickMenuType) => {
+const ClickMenu = ({
+    fetcher,
+    foundCharacters,
+    getLatestClickCoordinates
+}: ClickMenuType) => {
+    const menuRef = useRef<HTMLDivElement | null>(null);
     const gameData = useRouteLoaderData("current-game");
     const characters: Character[] = gameData.game.data.characters;
     const gameSlug = gameData.game.slug;
@@ -98,18 +105,34 @@ const ClickMenu = ({ fetcher }: ClickMenuType) => {
         }
     }, [clickInfo.selectedCharacter]);
 
+    // FIX: Corrects the click menu when it goes outside of viewport. Needs fix for the first click.
+    useEffect(() => {
+        if (menuRef.current) {
+            const rect = menuRef.current.getBoundingClientRect();
+            const overflowsX = rect.right > window.innerWidth;
+            const overflowsY = rect.bottom > window.innerHeight;
+            if (overflowsX) {
+                setClickPosition((prevPosition) => ({ ...prevPosition, x: window.innerWidth - rect.width }));
+            }
+            if (overflowsY) {
+                setClickPosition((prevPosition) => ({ ...prevPosition, y: window.innerHeight - rect.height }));
+            }
+        }
+    }, [clickPosition.x, clickPosition.y]);
+
     return <AnimatePresence
         initial={true}
         mode="wait"
     >
         {showClickMenu && (
             <motion.div
+                ref={menuRef}
                 className={styles["click-menu"]}
                 id="click-menu"
                 style={{
                     left: clickPosition.x,
                     top: clickPosition.y,
-                    position: "absolute"
+                    position: "fixed"
                 }}
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{
@@ -138,11 +161,12 @@ const ClickMenu = ({ fetcher }: ClickMenuType) => {
                 <div className={styles["horizontal-separator"]}></div>
                 <div className={styles["options"]}>
                     {characters.map((character: Character) => {
-                        return <button
+                        return foundCharacters.includes(character.name) ? null : <button
                             key={character.name}
                             className={styles["option"]}
-                            onClick={() => {
+                            onClick={(e) => {
                                 handleCaracterSelection(character.name);
+                                getLatestClickCoordinates(e.clientX, e.clientY);
                             }}
                         >
                             <img
