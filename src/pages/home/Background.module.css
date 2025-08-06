@@ -1,0 +1,39 @@
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+
+    .top-right {
+        transform: translateX(100%);
+        animation: appearTopRight 300ms ease forwards;
+    }
+
+    .bottom-left {
+        animation: appearBottomLeft 300ms ease forwards;
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes appearTopRight {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes appearBottomLeft {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}

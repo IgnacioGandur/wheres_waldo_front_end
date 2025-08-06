@@ -4,10 +4,14 @@ import { useLoaderData, NavLink } from "react-router";
 const SelectGame = () => {
     const loaderData = useLoaderData();
     return <main className={styles["select-game"]}>
-        {loaderData.fail && <p className={styles.error}>
-            {loaderData.error}
-        </p>}
-        <h1>games</h1>
+        <header className={styles["header"]}>
+            {loaderData.fail && <p className={styles.error}>
+                {loaderData.error}
+            </p>}
+            <h1>
+                Which game would you like to play?
+            </h1>
+        </header>
         <div className={styles["games-preview"]}>
             {loaderData.games.map((game: any) => {
                 return <NavLink

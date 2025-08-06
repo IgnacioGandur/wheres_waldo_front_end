@@ -7,6 +7,7 @@ const gameAction = async ({ request, params }: ActionFunctionArgs) => {
         const relativeClickY = formData.get("relativeClickY");
         const relativeClickX = formData.get("relativeClickX");
         const selectedCharacter = formData.get("selectedCharacter");
+        const selectedCharacterImage = formData.get("selectedCharacterImage");
         const fetchUrl = `${import.meta.env.VITE_API_BASE}/games/${params.gameSlug}`;
         const fetchOptions: RequestInit = {
             method: "POST",
@@ -18,7 +19,8 @@ const gameAction = async ({ request, params }: ActionFunctionArgs) => {
                 renderedImageHeight,
                 relativeClickX,
                 relativeClickY,
-                selectedCharacter
+                selectedCharacter,
+                selectedCharacterImage,
             })
         };
         const fetchResponse = await fetch(fetchUrl, fetchOptions);

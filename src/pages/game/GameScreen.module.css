@@ -77,6 +77,8 @@
                         border-radius: 50%;
                         border: 3px solid transparent;
                         transition: var(--transition-fast);
+                        display: grid;
+                        place-items: center;
 
                         .image {
                             width: 75px;
@@ -88,12 +90,13 @@
                         }
 
                         span {
-                            font-size: 2rem;
+                            font-size: 1.5rem;
+                            padding: 3px;
                             position: absolute;
                             bottom: -5%;
                             left: -5%;
-                            color: var(--color-success);
-                            background-color: black;
+                            color: var(--color-font);
+                            background-color: var(--color-success) !important;
                             border-radius: 50%;
                         }
                     }

@@ -1,8 +1,19 @@
 .home {
-    background-color: hotpink;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    background-color: var(--color-black-dimmed-medium);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        "header header"
+    ;
+    padding: var(--size-small);
+    gap: var(--size-small);
+    z-index: 10;
+
+    .header {
+        h1 {
+            text-align: center;
+        }
+    }
 
     .image {
         align-self: center;

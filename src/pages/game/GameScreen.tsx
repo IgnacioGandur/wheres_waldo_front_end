@@ -14,11 +14,7 @@ import QuitGameBox from "./quit-game-box/QuitGameBox";
 import MagnifierImport from "react-magnifier";
 import ClickMenu from "../../components/click-menu/ClickMenu";
 import Timer from "../../components/timer/Timer";
-
-type Marker = {
-    x: number,
-    y: number
-};
+import Marker from "../../components/marker/Marker";
 
 // NOTE: This is to shut up the Typescript warning about old react in the react-magnifier package.
 const Magnifier = MagnifierImport as unknown as ComponentType<any>;
@@ -36,6 +32,12 @@ type GameScreenProps = {
     toggleGameStatus: () => void
 }
 
+type Marker = {
+    x: number,
+    y: number,
+    character: string,
+};
+
 const GameScreen = ({
     gameImageSrc,
     gameSlug,
@@ -46,7 +48,8 @@ const GameScreen = ({
     const fetcher = useFetcher();
     const [foundCharacters, setFoundCharacters] = useState<string[]>([]);
     const [markers, setMarkers] = useState<Marker[]>([]);
-    const [latestClick, setLatestClick] = useState({ x: 0, y: 0 });
+
+    // Handle founded characters.
     useEffect(() => {
         if (fetcher.data?.success) {
             const isAlreadyFound = foundCharacters.includes(fetcher.data.foundCharacter);
@@ -61,22 +64,19 @@ const GameScreen = ({
         }
     }, [fetcher.data]);
 
-    const getLatestClickCoordinates = (x: number, y: number) => {
-        setLatestClick({
-            x,
-            y
-        });
-    };
-
     // Check the actions.success field, if true push the successfull coordinate to the markers array.
     useEffect(() => {
         if (fetcher?.data?.success) {
             setMarkers((prevMarkers) => ([
                 ...prevMarkers,
-                latestClick,
-            ]))
+                {
+                    x: fetcher?.data?.x - 37.2,
+                    y: fetcher?.data?.y - 37.2,
+                    character: fetcher?.data?.foundCharacter,
+                }
+            ]));
         }
-    }, [fetcher.state]);
+    }, [fetcher.data]);
 
     return <AnimatePresence>
         {gameStarted && (
@@ -108,7 +108,7 @@ const GameScreen = ({
                                             src={`/images/games/${gameSlug}/characters/${character.imageName}`}
                                             alt={character.name}
                                         />
-                                        {foundCharacters.includes(character.name) ? <span className="material-symbols-sharp">check_circle</span> : null}
+                                        {foundCharacters.includes(character.name) ? <span className="material-symbols-sharp">check</span> : null}
                                     </div>
                                 </div>
                             })}
@@ -122,29 +122,19 @@ const GameScreen = ({
                 <ClickMenu
                     fetcher={fetcher}
                     foundCharacters={foundCharacters}
-                    getLatestClickCoordinates={getLatestClickCoordinates}
                 />
-                <Magnifier
-                    height="100%"
-                    src={gameImageSrc}
-                    mgShowOverflow={false}
-                    className={styles["main-game-image"]}
-                />
-                {
-                    markers.map((marker) => {
-                        return <span
-                            style={{
-                                position: "fixed",
-                                top: `${marker.y}px`,
-                                left: `${marker.x}px`,
-                                zIndex: 999
-                            }}
-                            className="material-symbols-sharp"
-                        >
-                            distance
-                        </span>
-                    })
-                }
+                <div
+                    style={{ position: "relative" }}
+                    className={styles["image-wrapper"]}
+                >
+                    <Magnifier
+                        height="100%"
+                        src={gameImageSrc}
+                        mgShowOverflow={false}
+                        className={styles["main-game-image"]}
+                    />
+                    <Marker markers={markers} />
+                </div>
             </motion.section>
         )}
     </AnimatePresence>
