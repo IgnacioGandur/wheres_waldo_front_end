@@ -45,8 +45,12 @@ const ClickMenu = ({
 
             setMenu((prevProps) => ({
                 ...prevProps,
-                x: (clickEvent.clientX + menuRect.width) > window.innerWidth ? clickEvent.clientX - menuRect.width : clickEvent.clientX,
-                y: (clickEvent.clientY + menuRect.height) > window.innerHeight ? clickEvent.clientY - menuRect.height : clickEvent.clientY,
+                x: (clickEvent.clientX + menuRect.width) > window.innerWidth
+                    ? clickEvent.clientX - menuRect.width
+                    : clickEvent.clientX,
+                y: (clickEvent.clientY + menuRect.height) > window.innerHeight
+                    ? clickEvent.clientY - menuRect.height
+                    : clickEvent.clientY,
             }));
         }
     }, [menu.show, clickEvent]);

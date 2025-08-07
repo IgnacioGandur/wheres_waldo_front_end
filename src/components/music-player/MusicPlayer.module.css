@@ -1,0 +1,95 @@
+.music-player {
+    border: 2px solid var(--color-font);
+    padding: var(--size-small);
+    width: fit-content;
+    position: fixed;
+    bottom: var(--size-small);
+    left: var(--size-small);
+    border-radius: var(--rounding-total);
+    z-index: 100;
+    background-color: var(--color-black-dimmed-strong);
+    display: grid;
+    place-items: center;
+    transition: var(--transition-fast);
+
+    .toggle-play-state {
+        padding: var(--size-very-small) calc(var(--size-very-small) * 2);
+        background-color: var(--color-black-dimmed-strong);
+        border: 2px solid var(--color-font);
+        border-radius: var(--rounding-medium);
+        position: absolute;
+        font-weight: var(--font-thick);
+        opacity: 0;
+        transition: var(--transition-fast);
+        z-index: 90;
+    }
+
+    .play-button {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        transition: var(--transition-fast);
+
+        span {
+            font-size: 2.5rem;
+            color: var(--color-font);
+        }
+    }
+
+    .audio-controls {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: var(--size-very-small) calc(var(--size-very-small) * 2);
+        border: 2px solid var(--color-font);
+        border-radius: var(--rounding-big);
+        background-color: var(--color-black-dimmed-strong);
+        display: flex;
+        align-items: center;
+        gap: var(--size-very-small);
+        opacity: 0;
+        transition: var(--transition-fast);
+        z-index: 90;
+
+        .slider {
+            -webkit-appearance: none;
+            appearance: none;
+            background-color: transparent;
+        }
+
+        .slider::-webkit-slider-runnable-track {
+            height: 3px;
+            border-radius: --var(--rounding-medium);
+            background-color: white;
+
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            background-color: white;
+            height: 15px;
+            width: 15px;
+            border-radius: var(--rounding-total);
+            margin-top: -6px;
+        }
+    }
+}
+
+.music-player:hover,
+.music-player:focus,
+.music-player:focus-visible {
+    transform: scale(1.15);
+    cursor: pointer;
+
+    .toggle-play-state {
+        transform: translate(var(--size-small), -150%);
+        opacity: 1;
+    }
+
+    .audio-controls {
+        transform: translate(25%, -50%);
+        opacity: 1;
+    }
+}

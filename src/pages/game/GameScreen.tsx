@@ -8,12 +8,13 @@ import {
     useEffect,
     type ComponentType
 } from "react";
-import { useFetcher } from "react-router";
+import { useFetcher, useNavigate } from "react-router";
 import QuitGameBox from "./quit-game-box/QuitGameBox";
 import MagnifierImport from "react-magnifier";
 import ClickMenu from "../../components/click-menu/ClickMenu";
 import Timer from "../../components/timer/Timer";
 import Marker from "../../components/marker/Marker";
+import MusicPlayer from "../../components/music-player/MusicPlayer";
 
 // NOTE: This is to shut up the Typescript warning about old react in the react-magnifier package.
 const Magnifier = MagnifierImport as unknown as ComponentType<any>;
@@ -28,7 +29,6 @@ type GameScreenProps = {
     gameSlug: string,
     gameStarted: boolean,
     characters: Character[],
-    toggleGameStatus: () => void
 }
 
 type Marker = {
@@ -42,11 +42,15 @@ const GameScreen = ({
     gameSlug,
     gameStarted,
     characters,
-    toggleGameStatus,
 }: GameScreenProps) => {
     const fetcher = useFetcher({ key: "game-screen" });
     const [foundCharacters, setFoundCharacters] = useState<string[]>([]);
     const [markers, setMarkers] = useState<Marker[]>([]);
+    const navigate = useNavigate();
+
+    const quitGame = () => {
+        return navigate(0);
+    }
 
     // Handle founded characters.
     useEffect(() => {
@@ -85,6 +89,7 @@ const GameScreen = ({
                 animate={{ scale: 1, opacity: 1, }}
                 exit={{ scale: 0, opacity: 0, }}
             >
+                <MusicPlayer />
                 <header className={styles["header"]}>
                     <div className="empty"></div>
                     <Timer />
@@ -114,7 +119,7 @@ const GameScreen = ({
                         </div>
                     </div>
                     <QuitGameBox
-                        quitGameFunction={toggleGameStatus}
+                        quitGameFunction={quitGame}
                     />
                 </header>
                 <ClickMenu

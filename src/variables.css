@@ -40,4 +40,5 @@
   --font-size-very-big: 3rem;
   --transition-fast: all 225ms ease-in-out;
   --transition-normal: all 300ms ease;
+  --transition-slow: all 500ms linear;
 }

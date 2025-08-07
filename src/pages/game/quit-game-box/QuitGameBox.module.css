@@ -20,15 +20,25 @@
 }
 
 .confirm-quit-box {
-    display: grid;
-    grid-template-areas:
-        "message message"
-        "confirm cancel"
-    ;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--size-small);
-    padding: var(--size-small);
-    border: 1px solid var(--color-font);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .content {
+        display: grid;
+        grid-template-areas:
+            "message message"
+            "confirm cancel"
+        ;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--size-small);
+        padding: var(--size-small);
+        border: 1px solid var(--color-font);
+        background-color: black;
+        color: var(--color-font);
+    }
+
 
     .message {
         grid-area: message;
@@ -74,4 +84,8 @@
         background-color: var(--color-font);
         color: black;
     }
+}
+
+.confirm-quit-box::backdrop {
+    background-color: var(--color-black-dimmed-strong);
 }

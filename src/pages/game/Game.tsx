@@ -12,10 +12,10 @@ const Game = () => {
     const loaderData = useLoaderData();
     const characters = loaderData.game.data.characters;
     const [gameStarted, setGameStarted] = useState(false);
-
-    const toggleGameStatus = () => {
-        setGameStarted(prevStatus => !prevStatus);
-    }
+    //
+    // const toggleGameStatus = () => {
+    //     setGameStarted(prevStatus => !prevStatus);
+    // }
 
     return <div className={styles["game"]}>
         <Notification />
@@ -24,7 +24,6 @@ const Game = () => {
             gameSlug={loaderData.game.slug}
             gameStarted={gameStarted}
             characters={characters}
-            toggleGameStatus={toggleGameStatus}
         />
         <div
             style={{
