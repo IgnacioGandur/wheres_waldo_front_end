@@ -1,12 +1,7 @@
 import { AnimatePresence, motion, type TargetAndTransition } from "motion/react";
 import styles from "./Notification.module.css";
-import type { FetcherWithComponents } from "react-router";
 import { useEffect, useState } from "react";
-
-export type NotificationType = {
-    fetcher: FetcherWithComponents<any>,
-    time: number,
-};
+import { useFetcher } from "react-router";
 
 const initial: TargetAndTransition = {
     y: -100,
@@ -21,37 +16,35 @@ const animate: TargetAndTransition = {
 const exit: TargetAndTransition = {
     y: 100,
     opacity: 0,
-}
+};
 
-const Notification = ({ fetcher, time }: NotificationType) => {
+const Notification = () => {
     const [showNotification, setShowNotification] = useState(false);
+    const [message, setMessage] = useState("");
+    const fetcher = useFetcher({ key: "game-screen" });
+
     useEffect(() => {
         if (fetcher.data) {
             setShowNotification(true);
-            const timer = setTimeout(() => {
+            setMessage(fetcher.data.message);
+            const timeout = setTimeout(() => {
                 setShowNotification(false);
-            }, time);
+            }, 3000);
 
-            return () => clearTimeout(timer);
+            return () => clearTimeout(timeout);
         }
-    }, [fetcher.data, fetcher.state]);
+    }, [fetcher.data]);
+
     return <AnimatePresence>
         {showNotification && (
             <motion.div
                 initial={initial}
                 animate={animate}
                 exit={exit}
-                className={styles["notification"]}
+                className={`${styles["notification"]} ${!fetcher.data?.success ? styles["fail"] : styles["success"]}`}
             >
-                <p
-                    className={`${styles["message"]} ${fetcher.data?.success ? styles["found"] : styles["not-found"]}`}
-                >
-                    {fetcher.state === "submitting"
-                        ? "Checking..."
-                        : fetcher.state === "idle"
-                            && fetcher.data
-                            ? (fetcher.data?.message)
-                            : null}
+                <p className={styles["message"]}>
+                    {message}
                 </p>
             </motion.div>
         )}

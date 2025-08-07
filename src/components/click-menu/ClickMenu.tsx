@@ -1,6 +1,6 @@
 import styles from "./ClickMenu.module.css";
 import { useEffect, useLayoutEffect, useState, useRef } from "react";
-import { useRouteLoaderData, type FetcherWithComponents } from "react-router";
+import { useRouteLoaderData, useFetcher } from "react-router";
 
 type Character = {
     name: string,
@@ -8,24 +8,33 @@ type Character = {
 };
 
 type ClickMenuType = {
-    fetcher: FetcherWithComponents<any>,
     foundCharacters: string[],
 };
 
 const ClickMenu = ({
-    fetcher,
     foundCharacters,
 }: ClickMenuType) => {
     const menuRef = useRef<HTMLDivElement | null>(null);
     const gameData = useRouteLoaderData("current-game");
     const characters: Character[] = gameData.game.data.characters;
     const gameSlug = gameData.game.slug;
+    const fetcher = useFetcher({ key: "game-screen" });
 
-    // To render the menu to the user.
+    // Collect info to render the menu in the right position..
     const [menu, setMenu] = useState({
         show: false,
         x: 0,
         y: 0
+    });
+
+    // Collect info to check user pick.
+    const [clickInfo, setClickInfo] = useState({
+        renderedImageWidth: 0,
+        renderedImageHeight: 0,
+        relativeClickX: 0,
+        relativeClickY: 0,
+        selectedCharacter: '',
+        selectedCharacterImage: ''
     });
 
     const [clickEvent, setClickEvent] = useState<MouseEvent | null>(null);
@@ -55,16 +64,6 @@ const ClickMenu = ({
             show: false,
         }));
     };
-
-    // To collect info when the user clicks.
-    const [clickInfo, setClickInfo] = useState({
-        renderedImageWidth: 0,
-        renderedImageHeight: 0,
-        relativeClickX: 0,
-        relativeClickY: 0,
-        selectedCharacter: '',
-        selectedCharacterImage: ''
-    });
 
     const handleClickInfo = (
         info: {
@@ -96,6 +95,19 @@ const ClickMenu = ({
                 method: "POST"
             }
         );
+    }
+
+    const resetClickInfo = () => {
+        setTimeout(() => {
+            setClickInfo({
+                renderedImageWidth: 0,
+                renderedImageHeight: 0,
+                relativeClickX: 0,
+                relativeClickY: 0,
+                selectedCharacter: '',
+                selectedCharacterImage: ''
+            })
+        }, 0);
     }
 
     // Handle if menu should be shown or not based on click position.
@@ -167,6 +179,7 @@ const ClickMenu = ({
                         className={styles["option"]}
                         onClick={() => {
                             handleCaracterSelection(character.name, character.imageName);
+                            resetClickInfo();
                         }}
                     >
                         <img

@@ -8,7 +8,6 @@ import {
     useEffect,
     type ComponentType
 } from "react";
-import Notification from "../../components/notification/Notification";
 import { useFetcher } from "react-router";
 import QuitGameBox from "./quit-game-box/QuitGameBox";
 import MagnifierImport from "react-magnifier";
@@ -45,7 +44,7 @@ const GameScreen = ({
     characters,
     toggleGameStatus,
 }: GameScreenProps) => {
-    const fetcher = useFetcher();
+    const fetcher = useFetcher({ key: "game-screen" });
     const [foundCharacters, setFoundCharacters] = useState<string[]>([]);
     const [markers, setMarkers] = useState<Marker[]>([]);
 
@@ -118,9 +117,7 @@ const GameScreen = ({
                         quitGameFunction={toggleGameStatus}
                     />
                 </header>
-                <Notification fetcher={fetcher} time={3000} />
                 <ClickMenu
-                    fetcher={fetcher}
                     foundCharacters={foundCharacters}
                 />
                 <div

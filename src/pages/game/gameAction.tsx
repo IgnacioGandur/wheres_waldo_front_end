@@ -1,6 +1,7 @@
 import type { ActionFunctionArgs } from "react-router"
 const gameAction = async ({ request, params }: ActionFunctionArgs) => {
     try {
+        console.log("called");
         const formData = await request.formData();
         const renderedImageWidth = formData.get("renderedImageWidth");
         const renderedImageHeight = formData.get("renderedImageHeight");
@@ -25,12 +26,11 @@ const gameAction = async ({ request, params }: ActionFunctionArgs) => {
         };
         const fetchResponse = await fetch(fetchUrl, fetchOptions);
         const fetchResult = await fetchResponse.json();
-        console.log("the content of fetchResult is:", fetchResult);
         return fetchResult;
     } catch (error) {
         return {
             error: true,
-            message: "Server error. We were not able to check you pick, try again later please.",
+            message: "Server error. We were not able to check your pick, try again later please.",
         }
     }
 }

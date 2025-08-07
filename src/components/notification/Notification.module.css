@@ -1,13 +1,17 @@
 .notification {
     z-index: 999;
+    display: grid;
+    place-items: center;
+    padding: var(--size-very-small) calc(var(--size-very-small) * 3);
+    border: 2px solid var(--color-font);
     width: fit-content;
-    height: 3rem;
-    font-size: --var(--font-size-big);
+    color: var(--color-font);
     position: fixed;
+    top: 10px;
 
     .message {
-        padding: var(--size-medium) calc(var(--size-medium) * 2);
-        border: 2px solid var(--color-font);
+        padding: var(--size-very-small) calc(var(--size-very-small) * 2);
+        font-weight: var(--font-thick);
     }
 
     .message.found {
@@ -17,4 +21,12 @@
     .message.not-found {
         background-color: var(--color-error);
     }
+}
+
+.notification.success {
+    background-color: var(--color-success);
+}
+
+.notification.fail {
+    background-color: var(--color-error);
 }
