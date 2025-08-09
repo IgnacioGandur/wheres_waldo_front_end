@@ -3,6 +3,10 @@ import { format } from "date-fns";
 import { motion } from "motion/react";
 import { useRouteLoaderData } from "react-router";
 
+const firstPlace = "https://img.icons8.com/color/48/first-place-ribbon.png";
+const secondPlace = "https://img.icons8.com/color/48/second-place-ribbon.png";
+const thirdPlace = "https://img.icons8.com/color/48/third-place-ribbon.png";
+
 type Score = {
     id: number,
     username: string,
@@ -15,9 +19,12 @@ type LeaderboardProps = {
     showGameName: boolean
 };
 
-const firstPlace = "https://img.icons8.com/color/48/first-place-ribbon.png";
-const secondPlace = "https://img.icons8.com/color/48/second-place-ribbon.png";
-const thirdPlace = "https://img.icons8.com/color/48/third-place-ribbon.png";
+const formatTime = (time: number) => {
+    const minutes = Math.round(time / 60);
+    const seconds = Math.round(time % 60);
+
+    return `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+}
 
 const Leaderboard = ({
     scores,
@@ -69,7 +76,7 @@ const Leaderboard = ({
                     Time
                 </h3>
                 <span className={styles["time"]}>
-                    {score.time}
+                    {formatTime(score.time)}
                 </span>
             </li>
         })}

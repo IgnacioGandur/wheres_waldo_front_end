@@ -62,7 +62,17 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
-                background-color: var(--color-black-dimmed-medium);
+                background-color: var(--color-black-dimmed-soft);
+                color: var(--color-font);
+                transition: var(--transition-slow);
+                opacity: 0;
+
+                .title,
+                .difficulty {
+                    background-color: var(--color-black-dimmed-strong);
+                    padding: var(--size-small);
+                    text-align: center;
+                }
             }
         }
 
@@ -74,6 +84,7 @@
 
             .overlay {
                 background-color: var(--color-black-dimmed-soft);
+                opacity: 1;
             }
         }
 

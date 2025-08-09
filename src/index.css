@@ -33,6 +33,7 @@ body {
   grid-template-rows: max-content 1fr max-content;
   font-family: var(--font-main);
   flex-direction: column;
+  overflow-x: hidden;
 }
 
 #root {

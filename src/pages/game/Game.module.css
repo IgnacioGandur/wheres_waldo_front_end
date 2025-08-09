@@ -1,10 +1,10 @@
 .game {
-    /* z-index: 10; */
     display: flex;
     flex-direction: column;
     align-items: center;
     flex-grow: 1;
     gap: var(--size-medium);
+    font-family: var(--font-secondary);
 
     .background-image {
         z-index: 0;
@@ -24,12 +24,12 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: var(--color-black-dimmed-strong);
+        background-color: var(--color-black-dimmed-medium);
         z-index: 10;
     }
 
     .content {
-        flex-grow: 1;
+        flex: 1;
         padding: var(--size-medium);
         align-self: stretch;
         background-color: var(--color-black-dimmed-strong);
@@ -38,6 +38,7 @@
         gap: var(--size-medium);
         align-items: center;
         z-index: 5;
+        position: relative;
 
         .title {
             font-family: var(--font-secondary);
@@ -45,9 +46,9 @@
             font-weight: var(--font-normal-thickness);
         }
 
-        .rules {
-            font-family: var(--font-secondary);
-            font-size: var(--font-size-normal);
+        .sub-title {
+            font-weight: var(--font-thin);
+            font-size: var(--font-size-big);
         }
 
         .start-game {
@@ -69,6 +70,7 @@
             transition: var(--transition-fast);
             color: white;
             cursor: pointer;
+            margin: auto 0;
         }
 
         .start-game:hover,
@@ -76,31 +78,6 @@
         .start-game:focus-visible {
             background-position: left center;
             color: black;
-        }
-
-        .characters-to-find {
-            display: flex;
-            align-items: center;
-            padding: var(--size-small);
-            gap: var(--size-small);
-            font-weight: var(--font-thick);
-
-            .character {
-                display: flex;
-                flex-direction: column;
-                gap: var(--size-very-small);
-                align-items: center;
-                padding: var(--size-very-small);
-                border: 2px solid white;
-
-                .image {
-                    width: 75px;
-                    height: 75px;
-                    border-radius: var(--rounding-total);
-                    object-fit: cover;
-                    object-position: center;
-                }
-            }
         }
     }
 }
