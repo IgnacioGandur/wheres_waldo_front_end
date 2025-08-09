@@ -1,0 +1,13 @@
+.submitting-spinner {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    width: 100%;
+
+    .wrapper {
+        display: grid;
+        place-items: center;
+        gap: var(--size-small);
+        padding: var(--size-small);
+    }
+}

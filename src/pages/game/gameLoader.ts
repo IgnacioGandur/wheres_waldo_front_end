@@ -2,6 +2,7 @@ import type { LoaderFunctionArgs } from "react-router";
 
 const gameLoader = async ({ params }: LoaderFunctionArgs) => {
     try {
+        await new Promise(resolve => setTimeout(resolve, 2000));
         const gameUrl: string = `${import.meta.env.VITE_API_BASE}/games/${params.gameSlug}`;
         const fetchOptions: RequestInit = {
             method: "GET",

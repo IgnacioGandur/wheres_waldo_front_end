@@ -1,0 +1,83 @@
+.leaderboard {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-small);
+    list-style-type: none;
+    width: 100%;
+
+    .header {
+        grid-column: 1 / -1;
+        display: flex;
+        align-items: center;
+        padding: var(--size-very-small);
+        gap: var(--size-very-small);
+        justify-content: center;
+
+        .trophy-icon {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: var(--font-size-big);
+        }
+    }
+
+    .score {
+        display: grid;
+        grid-template-areas:
+            "ppf date time-title"
+            "ppf username time"
+        ;
+        grid-template-columns: max-content 1fr max-content;
+        grid-template-rows: max-content 2rem;
+        align-items: center;
+        border: 2px solid white;
+        padding: var(--size-very-small);
+        background-color: black;
+        gap: var(--size-minimum) var(--size-very-small);
+        position: relative;
+
+        .icon {
+            position: absolute;
+            top: -24px;
+            left: -24px;
+        }
+
+        .ppf {
+            grid-area: ppf;
+            font-size: 3rem;
+            place-self: center;
+        }
+
+        .date {
+            opacity: .5;
+            grid-area: date;
+            align-self: flex-end;
+        }
+
+        .username {
+            grid-area: username;
+        }
+
+        .time-title {
+            grid-area: time-title;
+        }
+
+        .time {
+            grid-area: time;
+            text-align: center;
+        }
+    }
+
+    .score.first {
+        background-color: var(--color-gold);
+    }
+
+    .score.second {
+        background-color: var(--color-silver);
+    }
+
+    .score.third {
+        background-color: var(--color-bronze);
+    }
+}

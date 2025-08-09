@@ -1,17 +1,17 @@
-.notification {
+.notification,
+.checking {
     z-index: 999;
-    display: grid;
-    place-items: center;
-    padding: var(--size-very-small) calc(var(--size-very-small) * 3);
-    border: 2px solid var(--color-font);
     width: fit-content;
     color: var(--color-font);
     position: fixed;
-    top: 10px;
+    left: 50%;
+    background-color: black;
 
     .message {
         padding: var(--size-very-small) calc(var(--size-very-small) * 2);
         font-weight: var(--font-thick);
+        padding: var(--size-very-small) calc(var(--size-very-small) * 2);
+        border: 2px solid var(--color-font);
     }
 
     .message.found {
@@ -29,4 +29,14 @@
 
 .notification.fail {
     background-color: var(--color-error);
+}
+
+.checking {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-very-small);
+    align-items: center;
+    padding: var(--size-very-small) calc(var(--font-size-very-small) * 2);
+    border: 2px solid var(--color-font);
+    font-weight: var(--font-thick);
 }

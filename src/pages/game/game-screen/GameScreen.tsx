@@ -8,13 +8,19 @@ import {
     useEffect,
     type ComponentType
 } from "react";
-import { useFetcher, useNavigate } from "react-router";
-import QuitGameBox from "./quit-game-box/QuitGameBox";
+import {
+    useFetcher,
+    useNavigate,
+    useRouteLoaderData
+} from "react-router";
+import QuitGameBox from "../quit-game-box/QuitGameBox";
 import MagnifierImport from "react-magnifier";
-import ClickMenu from "../../components/click-menu/ClickMenu";
-import Timer from "../../components/timer/Timer";
-import Marker from "../../components/marker/Marker";
-import MusicPlayer from "../../components/music-player/MusicPlayer";
+import ClickMenu from "../../../components/click-menu/ClickMenu";
+import Timer from "../../../components/timer/Timer";
+import Marker from "../../../components/marker/Marker";
+import MusicPlayer from "../../../components/music-player/MusicPlayer";
+import WinScreen from "../win-screen/WinScreen";
+import Notification from "../../../components/notification/Notification";
 
 // NOTE: This is to shut up the Typescript warning about old react in the react-magnifier package.
 const Magnifier = MagnifierImport as unknown as ComponentType<any>;
@@ -28,7 +34,6 @@ type GameScreenProps = {
     gameImageSrc: string,
     gameSlug: string,
     gameStarted: boolean,
-    characters: Character[],
 }
 
 type Marker = {
@@ -37,20 +42,42 @@ type Marker = {
     character: string,
 };
 
+type Timer = {
+    minutes: number,
+    seconds: number,
+};
+
 const GameScreen = ({
     gameImageSrc,
     gameSlug,
     gameStarted,
-    characters,
 }: GameScreenProps) => {
     const fetcher = useFetcher({ key: "game-screen" });
+    const loaderData = useRouteLoaderData("current-game");
+    const characters = loaderData.game.data.characters as Character[];
     const [foundCharacters, setFoundCharacters] = useState<string[]>([]);
     const [markers, setMarkers] = useState<Marker[]>([]);
+    const [playerWon, setPlayerWon] = useState(false);
+    const [time, setTime] = useState({
+        minutes: 0,
+        seconds: 0
+    });
     const navigate = useNavigate();
+
+    const getTime = (timer: Timer) => {
+        setTime(timer);
+    };
 
     const quitGame = () => {
         return navigate(0);
-    }
+    };
+
+    // Check if player won.
+    useEffect(() => {
+        if (foundCharacters.length === loaderData.game.data.characters.length) {
+            setPlayerWon(true);
+        }
+    }, [foundCharacters]);
 
     // Handle founded characters.
     useEffect(() => {
@@ -73,8 +100,8 @@ const GameScreen = ({
             setMarkers((prevMarkers) => ([
                 ...prevMarkers,
                 {
-                    x: fetcher?.data?.x - 37.2,
-                    y: fetcher?.data?.y - 37.2,
+                    x: fetcher.data.x,
+                    y: fetcher.data.y,
                     character: fetcher?.data?.foundCharacter,
                 }
             ]));
@@ -89,10 +116,14 @@ const GameScreen = ({
                 animate={{ scale: 1, opacity: 1, }}
                 exit={{ scale: 0, opacity: 0, }}
             >
+                <Notification />
                 <MusicPlayer />
                 <header className={styles["header"]}>
                     <div className="empty"></div>
-                    <Timer />
+                    <Timer
+                        playerWon={playerWon}
+                        getTime={getTime}
+                    />
                     <div className={styles["characters"]}>
                         <h2>Can you find them?</h2>
                         <div className={styles["container"]}>
@@ -138,6 +169,9 @@ const GameScreen = ({
                     <Marker markers={markers} />
                 </div>
             </motion.section>
+        )}
+        {playerWon && (
+            <WinScreen timer={time} />
         )}
     </AnimatePresence>
 }

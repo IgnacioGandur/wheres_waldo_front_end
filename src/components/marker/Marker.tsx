@@ -18,8 +18,8 @@ const Marker = ({
             key={marker.x + marker.y}
             style={{
                 position: "absolute",
-                top: `${marker.y}px`,
-                left: `${marker.x}px`
+                top: `calc(${marker.y}% - 2rem)`,
+                left: `calc(${marker.x}% - 2rem)`,
             }}
             className={styles["marker"]}
         >

@@ -5,25 +5,17 @@ import {
 import {
     useState,
 } from "react";
-import GameScreen from "./GameScreen";
-import Notification from "../../components/notification/Notification";
+import GameScreen from "./game-screen/GameScreen";
 
 const Game = () => {
     const loaderData = useLoaderData();
-    const characters = loaderData.game.data.characters;
     const [gameStarted, setGameStarted] = useState(false);
-    //
-    // const toggleGameStatus = () => {
-    //     setGameStarted(prevStatus => !prevStatus);
-    // }
 
     return <div className={styles["game"]}>
-        <Notification />
         <GameScreen
             gameImageSrc={`/images/games/${loaderData.game.slug}/${loaderData.game.filename}`}
             gameSlug={loaderData.game.slug}
             gameStarted={gameStarted}
-            characters={characters}
         />
         <div
             style={{

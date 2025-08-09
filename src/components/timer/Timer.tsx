@@ -1,28 +1,54 @@
 import { AnimatePresence, motion } from "motion/react";
 import styles from "./Timer.module.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
-const Timer = () => {
+type TimerProps = {
+    playerWon: boolean,
+    getTime: any
+};
+
+const Timer = ({
+    playerWon,
+    getTime
+}: TimerProps) => {
     const [timer, setTimer] = useState({
         seconds: 0,
         minutes: 0,
     });
-    useEffect(() => {
-        if (timer.seconds > 10) {
-            setTimer((prevTime) => ({ ...prevTime, minutes: prevTime.minutes + 1 }));
-        }
-        const interval = setInterval(() => {
-            setTimer((prevTime) => ({ ...prevTime, seconds: prevTime.seconds + 1 }));
-        }, 1000);
-        return () => clearInterval(interval);
-    }, []);
+    const intervalRef = useRef<number | null>(null);
 
     useEffect(() => {
-        if (timer.seconds > 59) {
-            setTimer((prevTime) => ({ ...prevTime, minutes: prevTime.minutes + 1 }));
-            setTimer((prevTimer) => ({ ...prevTimer, seconds: 0 }));
+        intervalRef.current = setInterval(() => {
+            setTimer((prevTimer) => {
+                if (prevTimer.seconds >= 59) {
+                    return {
+                        minutes: prevTimer.minutes + 1,
+                        seconds: 0
+                    }
+                }
+                return {
+                    ...prevTimer,
+                    seconds: prevTimer.seconds + 1,
+                }
+            })
+        }, 1000)
+
+        return () => {
+            if (intervalRef.current) {
+                clearInterval(intervalRef.current);
+            }
         }
-    }, [timer.seconds]);
+    })
+
+    useEffect(() => {
+        if (playerWon) {
+            if (intervalRef.current) {
+                clearInterval(intervalRef.current);
+            }
+            getTime(timer);
+        }
+    }, [playerWon, timer, getTime]);
+
     return <div className={styles["timer"]}>
         <h2>Timer</h2>
         <AnimatePresence mode="wait">
@@ -34,7 +60,8 @@ const Timer = () => {
                 exit={{ opacity: 0, y: 10 }}
                 transition={{ duration: 0.2 }}
             >
-                {timer.minutes < 10 && "0"}{timer.minutes}:{timer.seconds < 10 && "0"}{timer.seconds}
+                {timer.minutes < 10 && "0"}{timer.minutes}:
+                {timer.seconds < 10 && "0"}{timer.seconds}
             </motion.span>
         </AnimatePresence>
     </div>

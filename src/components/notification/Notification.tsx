@@ -2,20 +2,24 @@ import { AnimatePresence, motion, type TargetAndTransition } from "motion/react"
 import styles from "./Notification.module.css";
 import { useEffect, useState } from "react";
 import { useFetcher } from "react-router";
+import { SyncLoader } from "react-spinners";
 
 const initial: TargetAndTransition = {
-    y: -100,
     opacity: 0,
+    x: "-50%",
+    y: "-100%"
 };
 
 const animate: TargetAndTransition = {
-    y: 5,
     opacity: 1,
+    x: "-50%",
+    y: "0%"
 };
 
 const exit: TargetAndTransition = {
-    y: 100,
     opacity: 0,
+    x: "-50%",
+    y: "100%"
 };
 
 const Notification = () => {
@@ -35,9 +39,23 @@ const Notification = () => {
         }
     }, [fetcher.data]);
 
-    return <AnimatePresence>
-        {showNotification && (
+
+    return <AnimatePresence
+        mode="wait"
+    >
+        {fetcher.state === "submitting" ? (
             <motion.div
+                initial={initial}
+                animate={animate}
+                exit={exit}
+                className={styles["checking"]}
+            >
+                <SyncLoader color="#fff" />
+                <span>Checking your pick</span>
+            </motion.div>
+        ) : showNotification ? (
+            <motion.div
+                key="result"
                 initial={initial}
                 animate={animate}
                 exit={exit}
@@ -47,7 +65,7 @@ const Notification = () => {
                     {message}
                 </p>
             </motion.div>
-        )}
+        ) : null}
     </AnimatePresence>
 }
 
