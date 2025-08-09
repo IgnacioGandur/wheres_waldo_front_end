@@ -7,7 +7,6 @@
     ;
     padding: var(--size-small);
     gap: var(--size-small);
-    z-index: 10;
 
     .header {
         h1 {

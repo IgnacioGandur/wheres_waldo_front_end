@@ -1,7 +1,6 @@
 import type { ActionFunctionArgs } from "react-router"
 const gameAction = async ({ request, params }: ActionFunctionArgs) => {
     try {
-        await new Promise((resolve) => setTimeout(resolve, 2000));
         const formData = await request.formData();
         const intent = formData.get("intent");
         if (intent === "submit-score") {

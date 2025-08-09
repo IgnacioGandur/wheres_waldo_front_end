@@ -1,5 +1,6 @@
 import styles from "./Navbar.module.css";
 import { NavLink } from "react-router";
+import { ScaleLoader } from "react-spinners";
 
 type LinksTypes = {
     text: string,
@@ -40,14 +41,24 @@ const Navbar = ({ toggleVisibility }: NavbarTypes) => {
             {links.map((link) => {
                 return <NavLink
                     viewTransition
-                    className={styles.link}
+                    className={({ isActive }) => {
+                        return isActive
+                            ? `${styles["active"]} ${styles["link"]}`
+                            : styles["link"]
+                    }}
                     key={link.text}
                     to={link.href}
                 >
-                    {link.text}
-                    <span className="material-symbols-sharp">
-                        {link.icon}
-                    </span>
+                    {({ isPending }) => (
+                        <>
+                            <span className={`material-symbols-sharp ${styles["icon"]} ${isPending ? styles["loading"] : ""}`}>
+                                {isPending ? "app_badging" : link.icon}
+                            </span>
+                            <span className={styles["text"]}>
+                                {link.text}
+                            </span>
+                        </>
+                    )}
                 </NavLink>
             })}
         </div>
