@@ -8,6 +8,8 @@
     border: 2px solid var(--color-font);
     font-family: var(--font-secondary);
     transition: var(--transition-fast);
+    /* width: 30%; */
+    width: fit-content;
 
     .header {
         display: flex;
@@ -54,10 +56,10 @@
     }
 
     .options {
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: repeat(3, max-content);
         align-items: stretch;
-        gap: var(--size-minimum);
+        gap: 2px;
 
         .option {
             background-color: var(--color-background);

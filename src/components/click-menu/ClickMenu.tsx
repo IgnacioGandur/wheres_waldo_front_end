@@ -39,6 +39,7 @@ const ClickMenu = ({
 
     const [clickEvent, setClickEvent] = useState<MouseEvent | null>(null);
 
+    // Correct the menu's position if it overflows the viewport.
     useLayoutEffect(() => {
         if (menu.show && clickEvent && menuRef.current) {
             const menuRect = menuRef.current.getBoundingClientRect();
