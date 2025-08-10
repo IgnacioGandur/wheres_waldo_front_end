@@ -1,5 +1,5 @@
 .footer {
-    background-color: var(--color-black-dimmed-very-strong);
+    background-color: var(--color-black-dimmed-medium);
     z-index: 5;
     grid-area: footer;
     border-top: 1px solid var(--color-white-dimmed-2);

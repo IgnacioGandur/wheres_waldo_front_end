@@ -1,17 +1,39 @@
 .navbar {
-    background-color: var(--color-black-dimmed-very-strong);
-    padding: var(--size-small);
+    background-color: var(--color-black-dimmed-medium);
+    padding: var(--size-very-small);
     display: flex;
     justify-content: space-between;
     z-index: 5;
     align-items: center;
     border-bottom: 1px solid var(--color-white-dimmed-2);
     grid-area: navbar;
-    padding-bottom: 0;
+    position: relative;
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: var(--size-very-small);
+
+        .vertical-separator {
+            height: 1.5rem;
+            background-color: var(--color-white-dimmed-2);
+            width: 3px;
+            border-radius: var(--rounding-medium);
+        }
+
+        .icon {
+            width: 50px;
+            height: auto;
+        }
+    }
 
     .links {
         display: flex;
         gap: var(--size-medium);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
 
         .link {
             padding: var(--size-very-small);

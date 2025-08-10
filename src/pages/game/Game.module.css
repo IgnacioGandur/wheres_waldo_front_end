@@ -32,7 +32,7 @@
         flex: 1;
         padding: var(--size-medium);
         align-self: stretch;
-        background-color: var(--color-black-dimmed-strong);
+        background-color: var(--color-black-dimmed-medium);
         display: flex;
         flex-direction: column;
         gap: var(--size-medium);

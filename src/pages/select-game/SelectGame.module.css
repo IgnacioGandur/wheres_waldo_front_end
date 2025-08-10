@@ -3,114 +3,120 @@
     flex-direction: column;
     gap: var(--size-small);
     font-family: var(--font-secondary);
+    position: relative;
+    background-color: var(--color-black-dimmed-strong);
 
-    .header {
-        display: flex;
-        flex-direction: column;
-        gap: var(--size-very-small);
+    .background {
+        position: fixed;
+        inset: 0;
 
-        .error {
-            background-color: var(--color-error-dimmed);
-            padding: var(--size-small);
-            text-align: center;
-            font-weight: var(--font-thick);
+        .image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 0;
+            transition: var(--transition-normal);
         }
 
-        h1 {
-            text-align: center;
-            padding: var(--size-small);
-            font-weight: var(--font-normal-thickness);
+        .image.filter {
+            filter: grayscale(100%);
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--color-black-dimmed-strong);
         }
     }
 
-    .games-preview {
+    .content {
         display: flex;
-        align-items: center;
-        justify-content: center;
+        flex-direction: column;
+        gap: var(--size-medium);
+        padding: var(--size-medium);
         flex: 1;
-        gap: var(--size-small);
-        perspective: 1000px;
-        transform-style: preserve-3d;
 
-        .game {
-            width: 15%;
-            height: 75%;
-            position: relative;
-            overflow: hidden;
-            transition: var(--transition-fast);
-            filter: grayscale(100%);
-            border: 2px solid var(--color-font);
+        .header {
+            display: flex;
+            flex-direction: column;
+            gap: var(--size-very-small);
+            z-index: 10;
 
-            .background-image {
-                width: 100%;
-                height: 100%;
-                position: absolute;
-                object-fit: cover;
-                object-position: center;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
+            .error {
+                background-color: var(--color-error-dimmed);
+                padding: var(--size-small);
+                text-align: center;
+                font-weight: var(--font-thick);
             }
 
-            .overlay {
-                width: 100%;
-                height: 100%;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                background-color: var(--color-black-dimmed-soft);
-                color: var(--color-font);
-                transition: var(--transition-slow);
-                opacity: 0;
+            h1 {
+                text-align: center;
+                padding: var(--size-small);
+                font-weight: var(--font-normal-thickness);
+            }
+        }
 
-                .title,
-                .difficulty {
-                    background-color: var(--color-black-dimmed-strong);
-                    padding: var(--size-small);
-                    text-align: center;
+        .games-preview {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            gap: var(--size-small);
+            perspective: 1000px;
+            transform-style: preserve-3d;
+
+            .game {
+                width: 15%;
+                height: 75%;
+                position: relative;
+                overflow: hidden;
+                transition: var(--transition-fast);
+
+                .background-image {
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    object-fit: cover;
+                    object-position: center;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                }
+
+                .overlay {
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    background-color: var(--color-black-dimmed-soft);
+                    color: var(--color-font);
+                    transition: var(--transition-fast);
+                    opacity: 0;
+
+                    .title,
+                    .difficulty {
+                        background-color: var(--color-black-dimmed-strong);
+                        padding: var(--size-small);
+                        text-align: center;
+                    }
+                }
+            }
+
+            .game:hover,
+            .game:focus,
+            .game:focus-visible {
+                .overlay {
+                    opacity: 1;
                 }
             }
         }
-
-        .game:hover,
-        .game:focus,
-        .game:focus-visible {
-            transform: translateY(-40px);
-            filter: grayscale(0);
-
-            .overlay {
-                background-color: var(--color-black-dimmed-soft);
-                opacity: 1;
-            }
-        }
-
-        .game:hover+*,
-        .game:focus+*,
-        .game:focus-visible+* {
-            transform: translateY(-20px);
-            filter: grayscale(60%);
-        }
-
-        .game:hover+*+*,
-        .game:focus+*+*,
-        .game:focus-visible+*+* {
-            transform: translateY(-7px);
-            filter: grayscale(30%);
-        }
-
-        .game:has(+ *:hover) {
-            transform: translateY(-20px);
-            filter: grayscale(60%);
-        }
-
-        .game:has(+ * + *:hover) {
-            transform: translateY(-7px);
-            filter: grayscale(30%);
-        }
     }
-
 }
