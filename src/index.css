@@ -49,6 +49,8 @@ body {
 }
 
 .material-symbols-sharp {
+  display: grid;
+  place-items: center;
   font-variation-settings:
     'FILL' 0,
     'wght' 100,

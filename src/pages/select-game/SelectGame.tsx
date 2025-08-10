@@ -39,7 +39,7 @@ const SelectGame = () => {
                 {loaderData.games.map((game: any) => {
                     return <NavLink
                         viewTransition
-                        key={game.name}
+                        key={game.id}
                         className={styles["game"]}
                         to={`/games/${game.slug}`}
                     >

@@ -6,7 +6,7 @@
     bottom: var(--size-small);
     left: var(--size-small);
     border-radius: var(--rounding-total);
-    z-index: 100;
+    z-index: 999 !important;
     background-color: var(--color-black-dimmed-strong);
     display: grid;
     place-items: center;

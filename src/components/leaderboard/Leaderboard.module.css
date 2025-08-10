@@ -1,9 +1,10 @@
 .leaderboard {
     display: flex;
     flex-direction: column;
-    gap: var(--size-small);
     list-style-type: none;
     width: 100%;
+    flex: 1;
+    border: 2px solid var(--color-font);
 
     .header {
         grid-column: 1 / -1;
@@ -12,13 +13,50 @@
         padding: var(--size-very-small);
         gap: var(--size-very-small);
         justify-content: center;
+        text-align: center;
 
         .trophy-icon {
             font-size: 3rem;
         }
 
+        .vertical-separator {
+            height: 75%;
+            width: 3px;
+            background-color: var(--color-font);
+            border-radius: var(--rounding-medium);
+        }
+
         h2 {
+            flex: 1;
             font-size: var(--font-size-big);
+        }
+    }
+
+    .horizontal-separator {
+        width: 100%;
+        min-height: 3px;
+        background-color: var(--color-font);
+    }
+
+    .empty-score {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: var(--size-big);
+        padding: var(--size-medium) var(--size-very-big);
+        text-align: center;
+        font-family: var(--font-secondary);
+        height: 100%;
+        width: 100%;
+        flex: 1;
+
+        h2 {
+            font-weight: var(--font-normal-thickness);
+        }
+
+        .empty-icon {
+            width: 300px;
         }
     }
 
@@ -31,7 +69,7 @@
         grid-template-columns: max-content 1fr max-content;
         grid-template-rows: max-content 2rem;
         align-items: center;
-        border: 2px solid white;
+        border-bottom: 2px solid white;
         padding: var(--size-very-small);
         background-color: black;
         gap: var(--size-minimum) var(--size-very-small);

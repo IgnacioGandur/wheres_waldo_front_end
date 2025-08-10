@@ -178,9 +178,9 @@ const ClickMenu = ({
             </div>
             <div className={styles["horizontal-separator"]}></div>
             <div className={styles["options"]}>
-                {characters.map((character: Character) => {
+                {characters.map((character: Character, index) => {
                     return foundCharacters.includes(character.name) ? null : <button
-                        key={character.name}
+                        key={index}
                         className={styles["option"]}
                         onClick={() => {
                             handleCaracterSelection(character.name, character.imageName);

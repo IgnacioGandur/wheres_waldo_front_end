@@ -129,7 +129,7 @@ const WinScreen = ({ timer }: WinScreenProps) => {
                         <Leaderboard
                             key="leaderboard"
                             scores={loaderData.game.leaderboard.scores}
-                            showGameName={true}
+                            gameName={loaderData.game.name}
                         />
                     )}
                 </AnimatePresence>

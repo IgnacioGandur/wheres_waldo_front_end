@@ -1,0 +1,12 @@
+.leaderboards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-medium);
+    padding: var(--size-medium);
+
+    .container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+        gap: var(--size-medium);
+    }
+}

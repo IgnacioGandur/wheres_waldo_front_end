@@ -17,7 +17,6 @@ const gameLoader = async ({ params }: LoaderFunctionArgs) => {
                 message: gameResult.message
             }
         }
-        console.log("The content of game result is:", gameResult);
         return gameResult;
     } catch (error) {
         return {
