@@ -25,11 +25,7 @@ const links: LinksTypes[] = [
     },
 ];
 
-type NavbarTypes = {
-    toggleVisibility: () => void
-};
-
-const Navbar = ({ toggleVisibility }: NavbarTypes) => {
+const Navbar = () => {
     return <nav
         className={styles.navbar}
     >
@@ -63,11 +59,6 @@ const Navbar = ({ toggleVisibility }: NavbarTypes) => {
                 </NavLink>
             })}
         </div>
-        <button
-            onClick={toggleVisibility}
-        >
-            Credits
-        </button>
     </nav>
 }
 
