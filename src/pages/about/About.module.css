@@ -3,6 +3,7 @@
     background-color: --var(--color-black-dimmed-strong);
     display: flex;
     position: relative;
+    overflow-x: hidden;
 
     .content {
         background-color: var(--color-black-dimmed-very-strong);
@@ -53,6 +54,35 @@
                 border: 2pxs solid blue;
             }
 
+            .github-links {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: var(--size-big);
+                grid-column: 1/-1;
+
+                .link {
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--size-medium);
+                    align-items: center;
+                    text-decoration: none;
+                    color: var(--color-font);
+                    border: 2px solid transparent;
+                    padding: var(--size-medium);
+                    transition: var(--transition-slow);
+                    border-radius: var(--rounding-medium);
+
+                    svg {
+                        width: 100px;
+                        fill: red;
+                    }
+                }
+
+                .link:hover {
+                    border: 2px solid var(--color-font);
+                }
+            }
+
         }
 
         /* Tools section */
@@ -80,23 +110,115 @@
             .container {
                 grid-area: tools;
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                place-content: center;
-                gap: 2em;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                grid-auto-rows: 200px;
+                gap: var(--size-very-small);
                 flex-wrap: wrap;
 
-                .tool {
-                    display: flex;
-                    flex-direction: column;
-                    filter: grayscale(100%);
+                .tool-card {
+                    border-radius: var(--rounding-medium);
+                    position: relative;
+                    overflow: hidden;
+                    border: 2px solid transparent;
+                    transition: var(--transition-slow);
+                    cursor: pointer;
+                    animation: appearCard1 500ms ease-in-out forwards;
+                    opacity: 0;
+                    text-decoration: none;
+                    color: var(--color-font);
 
-                    .tool-icon {
-                        width: 125px;
+                    .icon-container {
+                        display: grid;
+                        place-items: center;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        z-index: 10;
+                        transition: all 750ms ease-in-out;
+
+                        svg {
+                            width: 15%;
+                        }
+                    }
+
+                    .left-pane,
+                    .right-pane {
+                        position: absolute;
+                        width: 50%;
+                        height: 100%;
+                        top: 0;
+                        z-index: 5;
+                        background-color: black;
+                        transition: transform 750ms ease-in-out;
+                    }
+
+                    .left-pane {
+                        left: 0;
+                    }
+
+                    .right-pane {
+                        right: 0;
+                    }
+
+                    .card-content {
+                        background-color: var(--color-black-dimmed-strong);
+                        position: absolute;
+                        inset: 0;
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        align-items: center;
+                        font-family: var(--font-secondary);
+                        padding: var(--size-small);
+
+                        >* {
+                            color: var(--color-font);
+                            text-align: center;
+                        }
+
+                        .tool-name {
+                            font-size: var(--font-size-big);
+                            font-weight: var(--font-normal-thickness);
+                        }
+
+                        .tool-description {
+                            flex: 1;
+                            display: grid;
+                            place-items: center;
+                        }
+
+                        .end {
+                            font-size: var(--font-size-small);
+                            font-weight: var(--font-thick);
+                        }
+
+                        .end::first-letter {
+                            text-transform: capitalize;
+                        }
                     }
                 }
 
-                .tool:hover {
-                    filter: grayscale(0);
+                .tool-card:hover,
+                .tool-card:focus,
+                .tool-card:focus-visible {
+                    border: 2px solid var(--color-font);
+
+                    .icon-container {
+                        transform: scale(7) rotate(360deg);
+                        opacity: 0;
+                    }
+
+                    .left-pane {
+                        transform: translateX(-100%);
+                    }
+
+                    .right-pane {
+                        transform: translateX(100%);
+                    }
                 }
             }
         }
@@ -115,19 +237,24 @@
     }
 }
 
-@keyframes float {
+@keyframes appearCard1 {
     0% {
-        box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
-        transform: translatey(0px);
+        transform: scale(0);
+        opacity: 0;
     }
 
-    50% {
-        box-shadow: 0 25px 15px 0px rgba(0, 0, 0, 0.2);
-        transform: translatey(-20px);
+    60% {
+        transform: scale(1.25);
+        opacity: 1;
+    }
+
+    80% {
+        transform: scale(0.95);
+        opacity: 1;
     }
 
     100% {
-        box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
-        transform: translatey(0px);
+        transform: scale(1);
+        opacity: 1;
     }
 }
