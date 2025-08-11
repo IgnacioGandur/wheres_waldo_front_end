@@ -1,7 +1,6 @@
 import styles from "./Leaderboard.module.css";
 import { format } from "date-fns";
 import { motion } from "motion/react";
-import { NavLink } from "react-router";
 
 const firstPlace = "https://img.icons8.com/color/48/first-place-ribbon.png";
 const secondPlace = "https://img.icons8.com/color/48/second-place-ribbon.png";
@@ -17,6 +16,7 @@ type Score = {
 type LeaderboardProps = {
     scores: Score[];
     gameName?: string;
+    extraStyles?: React.CSSProperties;
 };
 
 const formatTime = (time: number) => {
@@ -29,12 +29,11 @@ const formatTime = (time: number) => {
 const Leaderboard = ({
     scores,
     gameName,
+    extraStyles
 }: LeaderboardProps) => {
     return <motion.ul
         className={styles["leaderboard"]}
-        initial={{ y: 100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: 100, opacity: 0 }}
+        style={extraStyles}
     >
         <div className={styles["header"]}>
             <span className={`material-symbols-sharp ${styles['trophy-icon']}`}>

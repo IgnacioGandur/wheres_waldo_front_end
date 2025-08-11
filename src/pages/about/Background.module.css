@@ -1,0 +1,84 @@
+.background-1 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    overflow: hidden;
+
+    .blob-1 {
+        width: 10%;
+        height: auto;
+        position: absolute;
+        top: 10%;
+        left: 5%;
+        animation: appearTop 1s ease-in-out forwards 1.5s;
+        transform: translateY(-150%);
+    }
+
+    .blob-2 {
+        width: 20%;
+        height: auto;
+        position: absolute;
+        right: 5%;
+        bottom: 10%;
+        animation: appearBottom 1s ease-in-out forwards 2.5s;
+        transform: translateY(150%);
+    }
+}
+
+@keyframes appearTop {
+    0% {
+        transform: translateY(-150%);
+    }
+
+    20% {
+        transform: translateY(40%);
+    }
+
+    40% {
+        transform: translateY(-30%);
+    }
+
+    60% {
+        transform: translateY(20%);
+    }
+
+    80% {
+        transform: translateY(-10%);
+
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes appearBottom {
+    0% {
+        transform: translateY(150%);
+    }
+
+    20% {
+        transform: translateY(-40%);
+    }
+
+    40% {
+        transform: translateY(30%);
+    }
+
+    60% {
+        transform: translateY(-20%);
+    }
+
+    80% {
+        transform: translateY(10%);
+
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}

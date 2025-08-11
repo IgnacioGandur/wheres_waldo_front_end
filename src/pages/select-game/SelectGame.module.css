@@ -72,8 +72,15 @@
                 width: 15%;
                 height: 75%;
                 position: relative;
-                overflow: hidden;
+                /* overflow: hidden; */
                 transition: var(--transition-fast);
+                animation: appear 750ms ease-in forwards;
+                opacity: 0;
+                transform: scale(1);
+                filter: grayscale(100%);
+                border: 2px solid white;
+                padding-bottom: 2em;
+                background-color: red;
 
                 .background-image {
                     width: 100%;
@@ -113,10 +120,37 @@
             .game:hover,
             .game:focus,
             .game:focus-visible {
+                filter: grayscale(0);
+
                 .overlay {
                     opacity: 1;
                 }
             }
         }
+    }
+}
+
+@keyframes appear {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    25% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(.9);
+    }
+
+    75% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
     }
 }

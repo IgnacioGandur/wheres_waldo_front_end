@@ -23,6 +23,11 @@ const links: LinksTypes[] = [
         icon: "trophy",
         href: "/leaderboards",
     },
+    {
+        text: "About",
+        icon: "lightbulb",
+        href: "/about",
+    },
 ];
 
 const Navbar = () => {

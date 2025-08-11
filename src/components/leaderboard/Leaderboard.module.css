@@ -5,6 +5,8 @@
     width: 100%;
     flex: 1;
     border: 2px solid var(--color-font);
+    animation: appear 750ms ease-in forwards;
+    opacity: 0;
 
     .header {
         grid-column: 1 / -1;
@@ -117,5 +119,17 @@
 
     .score.third {
         background-color: var(--color-bronze);
+    }
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
     }
 }

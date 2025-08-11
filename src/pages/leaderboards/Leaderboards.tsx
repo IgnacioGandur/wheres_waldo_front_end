@@ -28,11 +28,12 @@ const Leaderboards = () => {
     const allLeaderboards = loaderData.leaderboards;
     return <main className={styles["leaderboards"]}>
         <div className={styles["container"]}>
-            {allLeaderboards.map((leaderboard) => {
+            {allLeaderboards.map((leaderboard, index) => {
                 return <Leaderboard
                     key={leaderboard.id}
                     scores={leaderboard.scores}
                     gameName={leaderboard.game.name}
+                    extraStyles={{ animationDelay: `${(index + 1) * 3}00ms` }}
                 />
             })}
         </div>

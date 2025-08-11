@@ -5,6 +5,7 @@ import Home from "../pages/home/Home";
 import SelectGame from "../pages/select-game/SelectGame";
 import Game from "../pages/game/Game";
 import Leaderboards from "../pages/leaderboards/Leaderboards";
+import About from "../pages/about/About";
 
 // Components
 import LoaderComponent from "../components/loader-component/LoaderComponent.tsx";
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
                 hydrateFallbackElement: <LoaderComponent
                     loadMessage="Loading leaderboards, please wait..."
                 />
+            },
+            {
+                path: "/about",
+                Component: About,
             }
         ]
     }

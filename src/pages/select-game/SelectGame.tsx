@@ -1,5 +1,4 @@
 import styles from "./SelectGame.module.css"
-import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useLoaderData, NavLink } from "react-router";
 
@@ -36,12 +35,13 @@ const SelectGame = () => {
                 </h1>
             </header>
             <div className={styles["games-preview"]}>
-                {loaderData.games.map((game: any) => {
+                {loaderData.games.map((game: any, index: number) => {
                     return <NavLink
                         viewTransition
                         key={game.id}
                         className={styles["game"]}
                         to={`/games/${game.slug}`}
+                        style={{ animationDelay: `${(index + 1) * 3}00ms` }}
                     >
                         <img
                             className={styles["background-image"]}
