@@ -76,7 +76,7 @@
                 transform: scale(1);
                 filter: grayscale(100%);
                 background-color: red;
-                border: .75em solid var(--color-font);
+                border: 2px solid var(--color-font);
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-end;
@@ -115,20 +115,6 @@
                         background-color: var(--color-black-dimmed-strong);
                         padding: var(--size-small);
                         text-align: center;
-                    }
-                }
-
-                .game-name {
-                    width: 101%;
-                    background-color: var(--color-font);
-                    padding: .5em;
-                    z-index: 10;
-                    text-align: center;
-                    transform: translateY(1px);
-                    grid-row: 2/-1;
-
-                    h2 {
-                        font-size: var(--font-size-normal);
                     }
                 }
             }

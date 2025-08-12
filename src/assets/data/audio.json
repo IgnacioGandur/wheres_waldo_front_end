@@ -1,0 +1,19 @@
+{
+    "songs": [
+
+    ],
+    "soundEffects": [
+        {
+            "name":"correctGuess",
+            "route":"/audio/correct-guess.wav"
+        },
+        {
+            "name":"wrongGuess",
+            "route":"/audio/failed-guess.wav"
+        },
+        {
+            "name":"win",
+            "route":"/audio/win.wav"
+        }
+    ]
+}
