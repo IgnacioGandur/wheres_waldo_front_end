@@ -45,6 +45,7 @@ const Notification = () => {
     >
         {fetcher.state === "submitting" ? (
             <motion.div
+                key="checking-submittion"
                 initial={initial}
                 animate={animate}
                 exit={exit}

@@ -1,5 +1,4 @@
 import styles from "./SelectGame.module.css"
-import { AnimatePresence, motion } from "motion/react";
 import { useLoaderData, NavLink } from "react-router";
 
 type GameData = {
@@ -57,6 +56,9 @@ const SelectGame = () => {
                             <p className={styles[`difficulty`]}>
                                 {game.difficulty}
                             </p>
+                        </div>
+                        <div className={styles["game-name"]}>
+                            <h2>{game.name}</h2>
                         </div>
                     </NavLink>
                 })}

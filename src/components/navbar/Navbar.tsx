@@ -19,7 +19,7 @@ const links: LinksTypes[] = [
         href: "/games",
     },
     {
-        text: "Leaderboard",
+        text: "Leaderboards",
         icon: "trophy",
         href: "/leaderboards",
     },

@@ -54,9 +54,6 @@ const Game = () => {
             >
                 {game.name}
             </h1>
-            <p className={styles["sub-title"]}>
-                Find all the characters in the list as fast as you can!
-            </p>
             <button
                 className={styles["start-game"]}
                 onClick={() => setGameStarted(true)}

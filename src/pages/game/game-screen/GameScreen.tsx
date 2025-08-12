@@ -111,6 +111,7 @@ const GameScreen = ({
     return <AnimatePresence>
         {gameStarted && (
             <motion.section
+                key="game-screen"
                 className={styles["game-screen"]}
                 initial={{ scale: 0, opacity: 0, }}
                 animate={{ scale: 1, opacity: 1, }}
