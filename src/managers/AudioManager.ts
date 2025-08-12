@@ -26,6 +26,7 @@ class AudioManager {
             return;
         }
         this.audios[soundEffect].currentTime = 0;
+        this.audios[soundEffect].volume = 1;
         this.audios[soundEffect].play();
     }
 
