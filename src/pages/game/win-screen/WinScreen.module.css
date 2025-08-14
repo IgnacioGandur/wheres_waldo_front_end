@@ -10,7 +10,7 @@
     padding: var(--size-medium);
     background-color: var(--color-black-dimmed-strong);
     font-family: var(--font-secondary);
-    z-index: 100;
+    z-index: 200;
 
     .container {
         width: 70%;

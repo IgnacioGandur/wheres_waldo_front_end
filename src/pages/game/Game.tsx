@@ -1,5 +1,4 @@
 import styles from "./Game.module.css"
-import audioData from "../../assets/data/audio.json";
 import {
     useLoaderData,
 } from "react-router";
@@ -13,6 +12,7 @@ import {
     AudioStateContext,
     AudioDispatchContext
 } from "../../contexts/AudioContext";
+import MusicPlayer from "../../components/music-player/MusicPlayer";
 
 type GameData = {
     name: string,
@@ -42,7 +42,6 @@ const Game = () => {
     const game = loaderData.game as GameData;
     const [gameStarted, setGameStarted] = useState(false);
 
-    // TODO: write the audio context and reducer to handle songs and volume.
     const [audio, dispatch] = useReducer(audioReducer, {
         volume: 0.2,
         currentSongIndex: 0,
@@ -52,6 +51,9 @@ const Game = () => {
     return <AudioStateContext value={audio}>
         <AudioDispatchContext value={dispatch}>
             <div className={styles["game"]}>
+                {gameStarted && (
+                    <MusicPlayer />
+                )}
                 <GameScreen
                     gameImageSrc={`/images/games/${loaderData.game.slug}/${loaderData.game.filename}`}
                     gameSlug={loaderData.game.slug}

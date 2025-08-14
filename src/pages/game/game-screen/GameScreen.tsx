@@ -18,7 +18,7 @@ import MagnifierImport from "react-magnifier";
 import ClickMenu from "../../../components/click-menu/ClickMenu";
 import Timer from "../../../components/timer/Timer";
 import Marker from "../../../components/marker/Marker";
-import MusicPlayer from "../../../components/music-player/MusicPlayer";
+// import MusicPlayer from "../../../components/music-player/MusicPlayer";
 import WinScreen from "../win-screen/WinScreen";
 import Notification from "../../../components/notification/Notification";
 import AudioManager from "../../../managers/AudioManager";
@@ -139,7 +139,7 @@ const GameScreen = ({
                 exit={{ scale: 0, opacity: 0, }}
             >
                 <Notification />
-                <MusicPlayer />
+                {/* <MusicPlayer /> */}
                 <header className={styles["header"]}>
                     <div className="empty"></div>
                     <Timer
@@ -171,9 +171,11 @@ const GameScreen = ({
                             })}
                         </div>
                     </div>
-                    <QuitGameBox
-                        quitGameFunction={quitGame}
-                    />
+                    {!playerWon && (
+                        <QuitGameBox
+                            quitGameFunction={quitGame}
+                        />
+                    )}
                 </header>
                 <ClickMenu
                     foundCharacters={foundCharacters}
