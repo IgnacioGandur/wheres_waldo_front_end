@@ -1,5 +1,5 @@
 import styles from "./MusicPlayer.module.css";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAudioState, useAudioDispatcher } from "../../contexts/AudioContext";
 import audioData from "../../assets/data/audio.json";
 
@@ -7,6 +7,7 @@ const MusicPlayer = () => {
     const audioRef = useRef<HTMLAudioElement | null>(null);
     const audioState = useAudioState();
     const audioDispatcher = useAudioDispatcher();
+    const [isPlaying, setIsPlaying] = useState(true);
 
     // FIX: figure out how to sync this fucking shit with the audio being played and the play/pause icon.
 
@@ -95,19 +96,28 @@ const MusicPlayer = () => {
         }
     }, [audioState?.currentSongIndex]);
 
-    const nearFinishSong = () => {
+
+    // Sync the UI with the song playing state.
+    useEffect(() => {
         const audio = audioRef.current;
         if (!audio) return;
-        audio.currentTime = audio.duration - 5;
-    }
+
+        setIsPlaying(!audio.paused);
+
+        const handlePlay = () => setIsPlaying(true);
+        const handlePause = () => setIsPlaying(false);
+
+        audio.addEventListener("play", handlePlay);
+        audio.addEventListener("pause", handlePause);
+
+        return () => {
+            audio.removeEventListener("play", handlePlay);
+            audio.removeEventListener("pause", handlePause);
+        }
+    }, [audioState?.currentSongIndex]);
 
     return audioState && <div className={styles["music-player"]}>
         <div className={styles["change-songs-buttons"]}>
-            <button
-                onClick={nearFinishSong}
-            >
-                almost finish
-            </button>
             <button
                 onClick={previousSong}
                 className={styles["previous-song"]}
@@ -133,7 +143,7 @@ const MusicPlayer = () => {
             className={styles["play-button"]}
         >
             <span className="material-symbols-sharp">
-                pause
+                {isPlaying ? "pause" : "play_arrow"}
             </span>
         </button>
         <audio
@@ -155,12 +165,14 @@ const MusicPlayer = () => {
                     onChange={handleVolumeChange}
                 />
             </div>
-            <p
+            <a
                 title="Current song"
-                className={styles["current-song"]}
+                href={audioData.songs[audioState.currentSongIndex].link}
+                target="_blank"
+                className={styles["current-song-title"]}
             >
                 {audioData.songs[audioState?.currentSongIndex].name}
-            </p>
+            </a>
         </div>
     </div>
 }

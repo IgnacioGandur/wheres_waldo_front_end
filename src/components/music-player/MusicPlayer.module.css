@@ -39,9 +39,19 @@
             background-color: var(--color-black-dimmed-strong);
             border: 2px solid var(--color-font);
             border-radius: var(--rounding-total);
+            transition: var(--transition-fast);
 
             span {
                 color: var(--color-font);
+
+            }
+        }
+
+        >*:hover {
+            background-color: var(--color-font);
+
+            span {
+                color: black;
             }
         }
     }
@@ -119,7 +129,7 @@
             }
         }
 
-        .current-song {
+        .current-song-title {
             white-space: nowrap;
             font-size: var(--font-size-small);
             background-color: var(--color-black-dimmed-strong);
@@ -127,6 +137,14 @@
             padding: var(--size-very-small) calc(var(--size-very-small) * 2);
             border-radius: var(--rounding-big);
             width: fit-content;
+            text-decoration: none;
+            color: var(--color-main);
+            transition: var(--transition-fast);
+        }
+
+        .current-song-title:hover {
+            background-color: var(--color-main);
+            color: black;
         }
     }
 }
@@ -135,6 +153,11 @@
 .music-player:focus,
 .music-player:focus-visible {
     transform: scale(1.15);
+    background-color: var(--color-font);
+
+    span {
+        color: black;
+    }
 
     >*:not(.play-button) {
         opacity: 1;
