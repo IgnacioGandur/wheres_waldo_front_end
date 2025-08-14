@@ -20,13 +20,13 @@ class AudioManager {
         this.audios = audios;
     }
 
-    playSoundEffect(soundEffect: keyof AudioObjects): void {
+    playSoundEffect(soundEffect: keyof AudioObjects, volume: number): void {
         if (!this.audios.hasOwnProperty(soundEffect)) {
             console.log(`The sound effect: ${soundEffect} doesn't exist`);
             return;
         }
         this.audios[soundEffect].currentTime = 0;
-        this.audios[soundEffect].volume = 1;
+        this.audios[soundEffect].volume = volume;
         this.audios[soundEffect].play();
     }
 

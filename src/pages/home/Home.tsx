@@ -27,18 +27,18 @@ const Home = () => {
                     <h1>Welcome to my "Find the character" game </h1>
                     <h2>Find Waldo, friends and and many other characters in challenging scenes.</h2>
                 </header>
+                <div className={styles["horizontal-separator"]}></div>
                 <div className={styles["tutorial"]}>
                     <h3>The rules are simple</h3>
-                    <ol className={styles["rules"]}>
+                    <ol className={styles["steps"]}>
                         {steps.map((step, index) => {
                             return <li
                                 key={step.description}
-                                className={styles["rule"]}
+                                className={styles["step"]}
                             >
                                 <span className={styles["step-n"]}>
                                     0{index + 1}
                                 </span>
-                                <div className={styles["horizontal-separator"]}></div>
                                 <p className={styles["description"]}>
                                     {step.description}
                                 </p>
@@ -46,6 +46,7 @@ const Home = () => {
                         })}
                     </ol>
                 </div>
+                <div className={styles["horizontal-separator"]}></div>
                 <div className={styles["go"]}>
                     <h3>Are you ready?</h3>
                     <NavLink

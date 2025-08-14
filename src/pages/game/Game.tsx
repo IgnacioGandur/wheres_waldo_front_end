@@ -1,11 +1,18 @@
 import styles from "./Game.module.css"
+import audioData from "../../assets/data/audio.json";
 import {
     useLoaderData,
 } from "react-router";
 import {
     useState,
+    useReducer
 } from "react";
 import GameScreen from "./game-screen/GameScreen";
+import audioReducer from "../../reducers/audioReducer";
+import {
+    AudioStateContext,
+    AudioDispatchContext
+} from "../../contexts/AudioContext";
 
 type GameData = {
     name: string,
@@ -35,33 +42,44 @@ const Game = () => {
     const game = loaderData.game as GameData;
     const [gameStarted, setGameStarted] = useState(false);
 
-    return <div className={styles["game"]}>
-        <GameScreen
-            gameImageSrc={`/images/games/${loaderData.game.slug}/${loaderData.game.filename}`}
-            gameSlug={loaderData.game.slug}
-            gameStarted={gameStarted}
-        />
-        <div
-            style={{
-                backgroundImage: `url("/images/games/${loaderData.game.slug}/${loaderData.game.filename}")`
-            }}
-            className={styles["background-image"]}
-        >
-        </div>
-        <div className={styles["content"]}>
-            <h1
-                className={styles["title"]}
-            >
-                {game.name}
-            </h1>
-            <button
-                className={styles["start-game"]}
-                onClick={() => setGameStarted(true)}
-            >
-                Start the game!
-            </button>
-        </div>
-    </div>
+    // TODO: write the audio context and reducer to handle songs and volume.
+    const [audio, dispatch] = useReducer(audioReducer, {
+        volume: 0.2,
+        currentSongIndex: 0,
+        isPlaying: true,
+    });
+
+    return <AudioStateContext value={audio}>
+        <AudioDispatchContext value={dispatch}>
+            <div className={styles["game"]}>
+                <GameScreen
+                    gameImageSrc={`/images/games/${loaderData.game.slug}/${loaderData.game.filename}`}
+                    gameSlug={loaderData.game.slug}
+                    gameStarted={gameStarted}
+                />
+                <div
+                    style={{
+                        backgroundImage: `url("/images/games/${loaderData.game.slug}/${loaderData.game.filename}")`
+                    }}
+                    className={styles["background-image"]}
+                >
+                </div>
+                <div className={styles["content"]}>
+                    <h1
+                        className={styles["title"]}
+                    >
+                        {game.name}
+                    </h1>
+                    <button
+                        className={styles["start-game"]}
+                        onClick={() => setGameStarted(true)}
+                    >
+                        Start the game!
+                    </button>
+                </div>
+            </div>
+        </AudioDispatchContext>
+    </AudioStateContext >
 }
 
 export default Game;

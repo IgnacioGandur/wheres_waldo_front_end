@@ -1,6 +1,20 @@
 {
     "songs": [
-
+        {
+            "name": "Aiivawn – Can't Take My Eyes Off You (lofi edit)",
+            "route":"/audio/songs/cant-take-my-eyes-off-you.mp3",
+            "link":"https://www.youtube.com/watch?v=UmQjdvSH5qk"
+        },
+        {
+            "name": "Regular Show | Gary vs David - Synth Wars",
+            "route":"/audio/songs/gary-vs-david.webm",
+            "link":"https://www.youtube.com/watch?v=EaCUyNQWY2M"
+        },
+        {
+            "name": "Fly Me To The Moon - YungRyythm | Lofi Remix",
+            "route":"/audio/songs/fly-me-to-the-moon.mp3",
+            "link":"https://www.youtube.com/watch?v=--B2MJbUv-o"
+        }
     ],
     "soundEffects": [
         {

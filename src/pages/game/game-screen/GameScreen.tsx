@@ -22,6 +22,7 @@ import MusicPlayer from "../../../components/music-player/MusicPlayer";
 import WinScreen from "../win-screen/WinScreen";
 import Notification from "../../../components/notification/Notification";
 import AudioManager from "../../../managers/AudioManager";
+import { useAudioState } from "../../../contexts/AudioContext";
 
 // NOTE: This is to shut up the Typescript warning about old react in the react-magnifier package.
 const Magnifier = MagnifierImport as unknown as ComponentType<any>;
@@ -64,6 +65,7 @@ const GameScreen = ({
         seconds: 0
     });
     const navigate = useNavigate();
+    const audioState = useAudioState();
 
     const getTime = (timer: Timer) => {
         setTime(timer);
@@ -111,16 +113,18 @@ const GameScreen = ({
 
     // Play sound effects according to guess.
     useEffect(() => {
+        if (!audioState) return;
+
         if (foundCharacters.length === loaderData.game.data.characters.length) {
-            AudioManager.playSoundEffect("win");
+            AudioManager.playSoundEffect("win", audioState?.volume);
             return;
         }
 
         if (fetcher.data) {
             if (fetcher.data.success) {
-                AudioManager.playSoundEffect("correctGuess");
+                AudioManager.playSoundEffect("correctGuess", audioState?.volume);
             } else {
-                AudioManager.playSoundEffect("wrongGuess");
+                AudioManager.playSoundEffect("wrongGuess", audioState.volume);
             }
         }
     }, [fetcher.data, foundCharacters]);
