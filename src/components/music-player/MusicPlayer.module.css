@@ -11,6 +11,7 @@
     place-items: center;
     transition: var(--transition-fast);
     z-index: 999 !important;
+    animation: appearMusicPlayer 1s ease-in-out forwards;
 
     * {
         cursor: pointer;
@@ -175,5 +176,28 @@
 
     .volume-and-song {
         transform: translate(30%, 0);
+    }
+}
+
+@keyframes appearMusicPlayer {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    33% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+
+    66% {
+        transform: scale(0.9);
+
+    }
+
+    100% {
+
+        transform: scale(1);
+        opacity: 1;
     }
 }
