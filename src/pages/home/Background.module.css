@@ -1,45 +1,13 @@
-.background {
+.home-background {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
 
-    path {
+    .vector {
+        animation: appearDot 1s ease-in-out infinite alternate-reverse;
         transform-origin: center;
         transform-box: fill-box;
-    }
-
-    .top-left {
-        transform: scale(0);
-        animation: appearDot 1.75s ease forwards, float 8s ease infinite 1s alternate-reverse;
         opacity: 0;
     }
-
-    .top-right {
-        transform: scale(0);
-        animation: appearDot 1.75s ease 500ms forwards, float 12s ease 1s infinite reverse;
-        opacity: 0;
-    }
-
-    .center {
-        transform: scale(0);
-        animation: appearDot 1.75s ease 1s forwards, float 5s ease 1.5s infinite reverse;
-        opacity: 0;
-    }
-
-    .bottom-left {
-        transform: scale(0);
-        animation: appearDot 1.75s ease 1.5s forwards, float 10s ease 2s infinite reverse;
-        opacity: 0;
-    }
-
-    .bottom-right {
-        transform: scale(0);
-        animation: appearDot 1.75s ease 2s forwards, float 4s ease 2.5s infinite reverse;
-        opacity: 0;
-    }
-
 }
 
 @keyframes appearDot {
@@ -48,36 +16,17 @@
         opacity: 0;
     }
 
-    25% {
-        transform: scale(1.15);
-        opacity: 1;
+    33% {
+
+        transform: scale(1.2);
     }
 
-    50% {
-        transform: scale(.85);
-    }
-
-    75% {
-        transform: scale(1.05);
+    66% {
+        transform: scale(.9);
     }
 
     100% {
         transform: scale(1);
-        opacity: 1;
-
-    }
-}
-
-@keyframes float {
-    0% {
-        transform: translatey(0px);
-    }
-
-    50% {
-        transform: translatey(-20px);
-    }
-
-    100% {
-        transform: translatey(0px);
+        opacity: .5;
     }
 }

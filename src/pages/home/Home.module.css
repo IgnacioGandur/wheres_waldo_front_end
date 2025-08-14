@@ -24,19 +24,13 @@
         justify-content: center;
         gap: var(--size-very-very-big);
 
-        >* {
-            width: 100%;
-            flex-grow: 1;
-            padding: var(--size-small);
-        }
-
         .horizontal-separator {
             height: 3px;
             border-radius: var(--rounding-medium);
             align-self: center;
             flex-grow: 0;
             width: 75%;
-            background-color: var(--color-white-dimmed-2);
+            background-color: var(--color-font);
         }
 
         .header,
@@ -56,7 +50,7 @@
         }
 
         .header {
-            animation: appearLeft 300ms ease-in forwards;
+            animation: appearLeft 500ms ease-in forwards;
             opacity: 0;
             transform: translateX(-100%);
         }
@@ -66,7 +60,7 @@
             flex-direction: column;
             opacity: 0;
             transform: translateX(100%);
-            animation: appearRight 300ms ease-in 325ms forwards;
+            animation: appearRight 500ms ease-in 550ms forwards;
 
             .steps {
                 flex: 1;
@@ -93,7 +87,7 @@
                         border: 2px solid var(--color-font);
                         transform: scale(0);
                         animation: appearRule 500ms ease-in-out forwards;
-                        animation-delay: 1s;
+                        animation-delay: 1100ms;
                     }
 
                     .horizontal-separator {
@@ -110,25 +104,24 @@
                     }
                 }
 
-                .steps:nth-child(2) {
+                .step:nth-child(2) {
                     .step-n {
-                        animation-delay: 1.3s;
+                        animation-delay: 1400ms;
                     }
                 }
 
-                .steps:nth-child(3) {
+                .step:nth-child(3) {
                     .step-n {
-                        animation-delay: 1.6s;
+                        animation-delay: 1700ms;
                     }
                 }
-
             }
         }
 
         .go {
             transform: translateX(-100%);
             opacity: 0;
-            animation: appearLeft 300ms ease-in-out 1s forwards;
+            animation: appearLeft 500ms ease-in-out 1050ms forwards;
 
             .button {
                 padding: var(--size-small) calc(var(--size-small) * 3);
