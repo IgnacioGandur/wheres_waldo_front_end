@@ -2,8 +2,11 @@ import { useEffect } from "react";
 import { Outlet } from "react-router";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
+import ServerError from "../../components/server-error/ServerError";
+import { useRouteLoaderData } from "react-router";
 
 const App = () => {
+    const loaderData = useRouteLoaderData("main");
     // Add "notranslate" class to all goole icons so they don't break if user translates the page.
     useEffect(() => {
         const icons: NodeListOf<HTMLSpanElement> = document.querySelectorAll(".material-symbols-sharp");
@@ -31,6 +34,7 @@ const App = () => {
     }, []);
     return <>
         <Navbar />
+        {loaderData?.error && <ServerError message={loaderData.message} />}
         <Outlet />
         <Footer />
     </>

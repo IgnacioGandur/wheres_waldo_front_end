@@ -1,0 +1,11 @@
+.main-app-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    place-items: center;
+    gap: var(--size-very-small);
+    color: var(--color-font);
+    font-family: var(--font-secondary);
+}
