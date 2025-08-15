@@ -88,6 +88,7 @@
                         transform: scale(0);
                         animation: appearRule 500ms ease-in-out forwards;
                         animation-delay: 1100ms;
+                        box-shadow: 0px 0px 20px 1px rgba(255, 255, 255, 0.5);
                     }
 
                     .horizontal-separator {

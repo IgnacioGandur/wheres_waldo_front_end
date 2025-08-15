@@ -23,14 +23,8 @@ html {
 
 body {
   flex-grow: 1;
-  display: grid;
-  grid-template-areas:
-    "navbar navbar navbar"
-    "content content content"
-    "footer footer footer"
-  ;
-  grid-template-columns: 1fr;
-  grid-template-rows: max-content 1fr max-content;
+  display: flex;
+  flex-direction: column;
   font-family: var(--font-main);
   flex-direction: column;
   overflow-x: hidden;

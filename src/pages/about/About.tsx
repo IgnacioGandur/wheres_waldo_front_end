@@ -1,5 +1,6 @@
 import styles from "./About.module.css";
 import Background from "./Background";
+import { useEffect } from "react";
 
 
 type SectionType = {
@@ -240,6 +241,22 @@ const tools: Tool[] = [
 ];
 
 const About = () => {
+    useEffect(() => {
+        const intersectionCallback = (entries: IntersectionObserverEntry[]) => {
+            entries.forEach((entry: IntersectionObserverEntry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add(styles["appear-section"]);
+                }
+            })
+        };
+        const observer = new IntersectionObserver(intersectionCallback, { threshold: .3 });
+        const sections = document.querySelectorAll(`.${styles["section"]}`);
+        sections.forEach((section) => {
+            observer.observe(section);
+        })
+
+    }, []);
+
     return <main className={styles["about"]}>
         <Background />
         <div
