@@ -143,6 +143,39 @@
     }
 }
 
+@media screen and (max-width: 599px) {
+    .home {
+        .wrapper {
+            .horizontal-separator {
+                width: 100%;
+            }
+
+            .tutorial {
+                .steps {
+                    grid-template-columns: 1fr;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+    .home {
+        .wrapper {
+            .tutorial {
+                .steps {
+                    grid-template-columns: 1fr 1fr;
+                    justify-items: center;
+
+                    .step:last-child {
+                        grid-column: 1/-1;
+                    }
+                }
+            }
+        }
+    }
+}
+
 @keyframes appearLeft {
     from {
         transform: translateX(-100%);
