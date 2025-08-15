@@ -77,7 +77,7 @@
                     z-index: 10;
 
                     .step-n {
-                        background-color: var(--color-black-dimmed-strong);
+                        background-color: black;
                         font-size: calc(var(--font-size-very-big) * 1.5);
                         padding: var(--size-very-small);
                         border-radius: var(--rounding-total);

@@ -84,6 +84,36 @@
     }
 }
 
+@media screen and (max-width:600px) {
+    .navbar {
+        justify-content: center;
+
+        .logo {
+            display: none;
+        }
+
+        .links {
+            flex: 1;
+            position: initial;
+            top: initial;
+            left: initial;
+            transform: initial;
+            justify-content: space-evenly;
+        }
+    }
+}
+
+@media screen and (min-width:599px) and (max-width:1024px) {
+    .navbar {
+        .links {
+            position: relative;
+            top: initial;
+            left: initial;
+            transform: initial;
+        }
+    }
+}
+
 @keyframes rotate {
     from {
         transform: rotate(0deg);
