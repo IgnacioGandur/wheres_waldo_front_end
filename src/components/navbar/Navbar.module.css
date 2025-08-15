@@ -69,7 +69,6 @@
         }
 
         .link:hover,
-        .link:focus,
         .link:focus-visible {
             border-bottom: 2px solid var(--color-white-dimmed-2);
 

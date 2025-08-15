@@ -3,7 +3,7 @@
     flex-direction: column;
     list-style-type: none;
     width: 100%;
-    flex: 1;
+    height: fit-content;
     border: 2px solid var(--color-font);
     animation: appear 750ms ease-in forwards;
     opacity: 0;
@@ -22,8 +22,8 @@
         }
 
         .vertical-separator {
-            height: 75%;
-            width: 3px;
+            min-width: 3px;
+            align-self: stretch;
             background-color: var(--color-font);
             border-radius: var(--rounding-medium);
         }
@@ -125,11 +125,9 @@
 @keyframes appear {
     0% {
         opacity: 0;
-        transform: translateY(100%);
     }
 
     100% {
-        transform: translateY(0);
         opacity: 1;
     }
 }

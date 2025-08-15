@@ -1,12 +1,114 @@
 .leaderboards {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     gap: var(--size-medium);
     padding: var(--size-medium);
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    z-index: 10;
 
-    .container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+    .header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         gap: var(--size-medium);
+
+        span {
+            font-size: 4rem;
+        }
+
+        h1 {
+            font-family: var(--font-secondary);
+            font-weight: var(--font-thin);
+            font-size: 3rem;
+        }
+
     }
+
+    .wrapper {
+        display: flex;
+
+        >* {
+            width: 100%;
+            display: flex;
+            align-items: start;
+        }
+
+        .previous-leaderboard,
+        .next-leaderboard {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: var(--size-very-small);
+            justify-content: center;
+            opacity: .5;
+            height: 50%;
+            align-self: center;
+            position: relative;
+            transform: scale(.75);
+
+            >* {
+                height: 100%;
+                overflow: hidden;
+            }
+        }
+
+        .previous-leaderboard::after,
+        .next-leaderboard::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .previous-leaderboard::after {
+            background-image: linear-gradient(90deg, #000000, #00000044 30%);
+        }
+
+        .next-leaderboard::after {
+            background-image: linear-gradient(-90deg, #000000, #00000044 30%);
+        }
+
+        .current-leaderboard {
+            flex: 2;
+            display: flex;
+            padding: var(--size-big);
+            gap: calc(var(--size-big) * 2);
+
+            .previous-leaderboard-button,
+            .next-leaderboard-button {
+                padding: var(--size-very-small);
+                display: grid;
+                place-items: center;
+                border: 2px solid var(--color-font);
+                background-color: var(--color-black-dimmed-strong);
+                border-radius: var(--rounding-total);
+                transition: var(--transition-fast);
+
+                span {
+                    color: var(--color-font);
+                    font-size: 3rem;
+                }
+            }
+
+            .previous-leaderboard-button:hover,
+            .previous-leaderboard-button:focus,
+            .previous-leaderboard-button:focus-visible,
+            .next-leaderboard-button:hover,
+            .next-leaderboard-button:focus,
+            .next-leaderboard-button:focus-visible {
+                background-color: var(--color-font);
+                transform: scale(1.2);
+                cursor: pointer;
+
+                span {
+                    color: black;
+                }
+            }
+
+        }
+    }
+
+
 }
