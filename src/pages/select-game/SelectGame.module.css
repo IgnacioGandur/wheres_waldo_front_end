@@ -55,14 +55,15 @@
             h1 {
                 text-align: center;
                 padding: var(--size-small);
-                font-weight: var(--font-normal-thickness);
+                font-weight: var(--font-thin);
+                font-size: var(--font-size-very-big);
             }
         }
 
         .games-preview {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            grid-auto-rows: repeat(auto-fit, minmax(750px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-auto-rows: clamp(600px, 40%, 700px);
             flex: 1;
             gap: var(--size-small);
             perspective: 1000px;
@@ -130,6 +131,19 @@
             }
         }
     }
+}
+
+@media screen and (max-width: 599px) {
+    /* .select-game { */
+    /*     background-color: red; */
+    /* } */
+}
+
+@media (min-width: 600px) and (max-width:1024px) {
+    /* .select-game { */
+    /*     background-color: blue; */
+    /* } */
+
 }
 
 @keyframes appear {
