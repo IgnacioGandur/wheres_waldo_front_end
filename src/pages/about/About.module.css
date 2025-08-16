@@ -32,8 +32,6 @@
             grid-template-rows: 50px 1fr;
             align-self: stretch;
             gap: var(--size-medium);
-            /* animation: appearFromLeft 750ms ease-in forwards; */
-            /* transform: translateX(-100%); */
             opacity: 0;
 
 
@@ -100,6 +98,7 @@
             ;
             grid-template-columns: 50px 1fr;
             align-self: stretch;
+            align-items: center;
             gap: var(--size-medium);
 
             .icon {
@@ -226,6 +225,50 @@
                     .right-pane {
                         transform: translateX(100%);
                     }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 599px) {
+    .about {
+        .content {
+            padding: var(--size-medium) var(--size-very-small);
+
+            .section,
+            .tools-section {
+                grid-template-columns: 35px 1fr;
+                grid-template-rows: 35px 1fr;
+            }
+
+            .tools-section {
+                align-items: center;
+
+                .title {
+                    font-size: 1.5rem;
+                }
+            }
+
+            .section {
+                h2 {
+                    font-size: 1.5rem;
+                }
+
+                .github-links {
+                    grid-template-columns: 1fr;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+    .about {
+        .content {
+            .tools-section {
+                .title {
+                    font-size: 2.5rem;
                 }
             }
         }

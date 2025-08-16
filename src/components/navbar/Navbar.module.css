@@ -1,5 +1,6 @@
 .navbar {
-    background-color: var(--color-black-dimmed-medium);
+    /* background-color: var(--color-black-dimmed-medium); */
+    background-color: var(--color-black-dimmed-strong);
     padding: var(--size-very-small);
     display: flex;
     justify-content: space-between;
