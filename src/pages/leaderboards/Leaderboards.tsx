@@ -131,6 +131,15 @@ const Leaderboards = () => {
                     </motion.div>
                 </AnimatePresence>
             </div>
+            <div className={styles["leaderboards-mobile"]}>
+                {allLeaderboards.map((leaderboard) => {
+                    return <Leaderboard
+                        key={leaderboard.id}
+                        scores={leaderboard.scores}
+                        gameName={leaderboard.game.name}
+                    />
+                })}
+            </div>
         </main >
     </>
 }

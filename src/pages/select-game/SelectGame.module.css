@@ -133,18 +133,9 @@
     }
 }
 
-@media screen and (max-width: 599px) {
-    /* .select-game { */
-    /*     background-color: red; */
-    /* } */
-}
+@media screen and (max-width: 599px) {}
 
-@media (min-width: 600px) and (max-width:1024px) {
-    /* .select-game { */
-    /*     background-color: blue; */
-    /* } */
-
-}
+@media (min-width: 600px) and (max-width:1024px) {}
 
 @keyframes appear {
     0% {
