@@ -13,6 +13,8 @@ import {
     AudioDispatchContext
 } from "../../contexts/AudioContext";
 import MusicPlayer from "../../components/music-player/MusicPlayer";
+import Credits from "./credits/Credits";
+import { AnimatePresence } from "motion/react";
 
 type GameData = {
     name: string,
@@ -41,6 +43,11 @@ const Game = () => {
     const loaderData = useLoaderData();
     const game = loaderData.game as GameData;
     const [gameStarted, setGameStarted] = useState(false);
+    const [showCredits, setShowCredits] = useState(false);
+
+    const toggleCredits = () => {
+        setShowCredits((prevState) => !prevState);
+    };
 
     const [audio, dispatch] = useReducer(audioReducer, {
         volume: 0.2,
@@ -78,6 +85,11 @@ const Game = () => {
                     >
                         Start the game!
                     </button>
+                    <Credits
+                        showCredits={showCredits}
+                        toggleCredits={toggleCredits}
+                        imageUrl={loaderData.game.link}
+                    />
                 </div>
             </div>
         </AudioDispatchContext>
