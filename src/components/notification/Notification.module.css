@@ -4,14 +4,17 @@
     width: fit-content;
     color: var(--color-font);
     position: fixed;
+    top: 5%;
     left: 50%;
     background-color: black;
+    z-index: 999 !important;
 
     .message {
         padding: var(--size-very-small) calc(var(--size-very-small) * 2);
         font-weight: var(--font-thick);
         padding: var(--size-very-small) calc(var(--size-very-small) * 2);
         border: 2px solid var(--color-font);
+        text-align: center;
     }
 
     .message.found {

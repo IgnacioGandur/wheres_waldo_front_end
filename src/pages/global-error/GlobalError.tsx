@@ -37,7 +37,10 @@ const GlobalError = () => {
                 </h3>
                 <ol className={styles["possibilities"]}>
                     {possibilities.map((possibility: Possibility, index: number) => {
-                        return <li className={styles["possibility"]}>
+                        return <li
+                            key={possibility.text}
+                            className={styles["possibility"]}
+                        >
                             <span className={styles["icon"]}>
                                 {index + 1}
                             </span>

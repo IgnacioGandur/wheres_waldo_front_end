@@ -169,13 +169,31 @@
         transform: translate(0, -175%) scale(1);
     }
 
-    .toggle-play-state {
-        transform: translate(var(--size-small), -150%) scale(1);
-        opacity: 1;
-    }
-
     .volume-and-song {
         transform: translate(30%, 0);
+    }
+}
+
+@media (max-width: 1300px) {
+    .music-player {
+        top: var(--size-very-small);
+        left: var(--size-very-small);
+        bottom: initial;
+        transform: scale(.75) !important;
+    }
+
+    .music-player:hover,
+    .music-player:focus,
+    .music-player:active,
+    .music-player:focus-visible {
+        .change-songs-buttons {
+            opacity: 1;
+            transform: translate(0, 175%) scale(1);
+        }
+
+        .volume-and-song {
+            transform: translate(30%, 0);
+        }
     }
 }
 

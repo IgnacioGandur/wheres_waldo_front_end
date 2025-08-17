@@ -167,3 +167,34 @@
         }
     }
 }
+
+@media (max-width: 1300px) {
+    .win-screen {
+        padding: var(--size-very-small);
+
+        .container {
+            width: 100%;
+            height: 100%;
+            padding: var(--size-very-small);
+            border: none;
+
+            h2 {
+                text-align: center;
+            }
+
+            .submit-score {
+                display: flex;
+                flex-direction: column;
+
+                .label {
+                    font-weight: 700;
+                }
+
+                .submit-button {
+                    aspect-ratio: initial;
+                    padding: var(--size-very-small);
+                }
+            }
+        }
+    }
+}

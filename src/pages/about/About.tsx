@@ -23,7 +23,7 @@ const sections: SectionType[] = [
     {
         title: "Notes",
         icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M112 152h288v32H112zm0 88h288v32H112zm0 88h152v32H112z"></path><path fill="currentColor" d="M480 48H32v416h448Zm-32 384H64V80h384Z"></path></svg>',
-        details: "1. The front-end, back-end and database for this project are hosted in free-tier services and that can impact the loading times. 2. This is my first time using Typescript in a project. 3. Almost all the animations in this project were made by my with vanilla CSS, I used React motion to animate the unmounting of components."
+        details: "1. The front-end, back-end and database for this project are hosted in free-tier services and that can impact the loading times. 2. This is my first time using Typescript in a project. 3. Almost all the animations in this project were made by me with vanilla CSS, I used React motion mainly to animate the unmounting of components."
     },
     {
         title: "Author",

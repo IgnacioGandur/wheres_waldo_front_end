@@ -119,6 +119,11 @@ const ClickMenu = ({
     useLayoutEffect(() => {
         const handleDocumentClick = (e: MouseEvent) => {
             const target = e.target as HTMLElement;
+
+            if (menuRef.current && menuRef.current.contains(target)) {
+                return;
+            }
+
             // Ignore if click is outside image.
             if (!target.classList.contains("magnifier-image")) {
                 hideMenu();
@@ -137,10 +142,12 @@ const ClickMenu = ({
             }
         };
 
-        document.addEventListener("click", handleDocumentClick);
+        // document.addEventListener("click", handleDocumentClick);
+        document.addEventListener("pointerup", handleDocumentClick);
 
         return () => {
-            document.removeEventListener("click", handleDocumentClick);
+            // document.removeEventListener("click", handleDocumentClick);
+            document.removeEventListener("pointerup", handleDocumentClick);
         }
     }, []);
 
@@ -185,6 +192,7 @@ const ClickMenu = ({
                         onClick={() => {
                             handleCaracterSelection(character.name, character.imageName);
                             resetClickInfo();
+                            hideMenu();
                         }}
                     >
                         <img

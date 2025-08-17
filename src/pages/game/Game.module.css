@@ -32,7 +32,8 @@
 
     .content {
         flex: 1;
-        padding: var(--size-medium);
+        /* padding: var(--size-medium); */
+        padding: var(--size-small);
         align-self: stretch;
         background-color: var(--color-black-dimmed-medium);
         display: flex;
@@ -46,6 +47,7 @@
             font-family: var(--font-secondary);
             font-size: 3rem;
             font-weight: var(--font-normal-thickness);
+            text-align: center;
         }
 
         .sub-title {
@@ -83,6 +85,18 @@
         }
     }
 }
+
+@media (max-width: 599px) {
+    .game {
+        .content {
+            .title {
+                font-size: 2rem;
+            }
+        }
+    }
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {}
 
 @keyframes appearBackground {
     from {

@@ -78,3 +78,8 @@ body {
   scrollbar-width: thin;
   scrollbar-color: white black;
 }
+
+/* Put the magnifying glass over everything. */
+.magnifying-glass {
+  z-index: 999 !important;
+}

@@ -8,20 +8,6 @@
     background-color: var(--color-success-dimmed);
     animation: appear 500ms ease-in-out forwards;
     position: relative;
-
-    .charater {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-    }
-
-    .icon {
-        font-size: 2vw;
-        color: white;
-        position: absolute;
-        top: -65%;
-    }
 }
 
 @keyframes appear {

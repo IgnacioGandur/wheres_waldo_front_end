@@ -1,6 +1,6 @@
 .about {
     font-family: var(--font-secondary);
-    background-color: --var(--color-black-dimmed-strong);
+    background-color: --var(--color-black-dimmed-medium);
     display: flex;
     position: relative;
     overflow-x: hidden;

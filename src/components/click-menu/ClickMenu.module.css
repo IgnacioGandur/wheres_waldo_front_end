@@ -8,8 +8,9 @@
     border: 2px solid var(--color-font);
     font-family: var(--font-secondary);
     transition: var(--transition-fast);
-    /* width: 30%; */
     width: fit-content;
+    z-index: 999;
+    pointer-events: auto;
 
     .header {
         display: flex;
@@ -56,12 +57,14 @@
     }
 
     .options {
-        display: grid;
-        grid-template-columns: repeat(3, max-content);
-        align-items: stretch;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
         gap: 2px;
+        max-width: 400px;
 
         .option {
+            flex: 1;
             background-color: var(--color-background);
             color: var(--color-font);
             font-size: var(--font-size-normal);
@@ -73,6 +76,7 @@
             display: flex;
             align-items: center;
             gap: var(--size-small);
+            border: 2px solid var(--color-font);
 
             .image {
                 width: 50px;
@@ -99,6 +103,58 @@
 
             .vertical-separator {
                 background-color: black;
+            }
+        }
+    }
+}
+
+@media (max-width: 599px) {
+    .click-menu {
+        width: 100% !important;
+        width: fit-content;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+
+        .header {
+            .who-that {
+                flex: 1;
+                text-align: center;
+            }
+        }
+
+        .options {
+            flex: 1;
+            max-width: initial;
+
+            .option {
+                padding: var(--size-minimum);
+                gap: var(--size-minimum);
+                border: 2px solid var(--color-font);
+
+                .name {
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 600px) and (max-width: 1300px) {
+    .click-menu {
+        width: fit-content;
+        display: flex;
+        flex-direction: column;
+        overflow: auto;
+        padding: var(--size-very-small);
+
+        .options {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+
+            .option {
+                flex: 1;
             }
         }
     }

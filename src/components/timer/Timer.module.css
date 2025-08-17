@@ -15,3 +15,18 @@
         font-size: var(--font-size-very-big);
     }
 }
+
+@media (max-width: 1300px) {
+    .timer {
+        position: initial;
+        top: initial;
+        left: initial;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+
+        h2 {
+            display: none;
+        }
+    }
+}

@@ -54,7 +54,7 @@
 
             h1 {
                 text-align: center;
-                padding: var(--size-small);
+                padding: var(--size-very-small);
                 font-weight: var(--font-thin);
                 font-size: var(--font-size-very-big);
             }

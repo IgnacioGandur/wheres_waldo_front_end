@@ -9,6 +9,10 @@
     border: 2px solid var(--color-font);
     transition: var(--transition-fast);
     cursor: pointer;
+    position: absolute;
+    top: var(--size-very-small);
+    right: var(--size-very-small);
+    z-index: 50;
 }
 
 .close-game:hover,
@@ -88,4 +92,17 @@
 
 .confirm-quit-box::backdrop {
     background-color: var(--color-black-dimmed-strong);
+}
+
+@media (max-width: 600px) {
+    .confirm-quit-box {
+        width: 90%;
+    }
+}
+
+@media (max-width: 1300px) {
+    .quit-game {
+        bottom: var(--size-very-small);
+        right: var(--size-very-small);
+    }
 }
