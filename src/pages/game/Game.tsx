@@ -14,7 +14,6 @@ import {
 } from "../../contexts/AudioContext";
 import MusicPlayer from "../../components/music-player/MusicPlayer";
 import Credits from "./credits/Credits";
-import { AnimatePresence } from "motion/react";
 
 type GameData = {
     name: string,

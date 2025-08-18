@@ -39,7 +39,7 @@ export default function audioReducer(state: AudioStateType, action: AudioActionT
         }
 
         default: {
-            throw new Error(`No action matches the provided action type: '${action.type}'.`);
+            throw new Error(`No action matches the provided action type.`);
         }
     }
 }
