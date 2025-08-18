@@ -53,12 +53,14 @@
         width: 100%;
         flex: 1;
 
-        h2 {
+        p {
             font-weight: var(--font-normal-thickness);
+            align-self: stretch;
         }
 
         .empty-icon {
-            width: 300px;
+            width: 100%;
+            max-width: 300px;
         }
     }
 
@@ -119,6 +121,43 @@
 
     .score.third {
         background-color: var(--color-bronze);
+    }
+}
+
+@media (max-width: 600px) {
+    .leaderboard {
+        .header {
+            span {
+                display: none;
+            }
+
+            .vertical-separator {
+                display: none;
+            }
+        }
+    }
+}
+
+@media (max-width:1024px) {
+    .leaderboard {
+        .header {
+            h2 {
+                font-size: var(--font-size-big) !important;
+            }
+        }
+
+        .empty-score {
+            padding: var(--size-small);
+
+            p {
+                font-size: var(--size-medium) !important;
+            }
+
+            .empty-icon {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
     }
 }
 

@@ -128,7 +128,7 @@ const WinScreen = ({ timer }: WinScreenProps) => {
                     ) : (
                         <Leaderboard
                             key="leaderboard"
-                            scores={loaderData.game.leaderboard.scores}
+                            scores={[]}
                             gameName={loaderData.game.name}
                         />
                     )}

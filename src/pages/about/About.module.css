@@ -83,6 +83,10 @@
 
         }
 
+        .section:nth-child(5) {
+            order: 7;
+        }
+
         .section.appear-section {
             animation: appearSection 350ms ease-in forwards;
             transform: translateY(100%);
