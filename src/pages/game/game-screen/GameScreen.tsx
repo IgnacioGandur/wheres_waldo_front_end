@@ -1,18 +1,7 @@
 import styles from "./GameScreen.module.css";
-import {
-    AnimatePresence,
-    motion
-} from "motion/react"
-import {
-    useState,
-    useEffect,
-    type ComponentType
-} from "react";
-import {
-    useFetcher,
-    useNavigate,
-    useRouteLoaderData
-} from "react-router";
+import { AnimatePresence, motion } from "motion/react";
+import { useState, useEffect, type ComponentType } from "react";
+import { useFetcher, useNavigate, useRouteLoaderData } from "react-router";
 import QuitGameBox from "../quit-game-box/QuitGameBox";
 import MagnifierImport from "react-magnifier";
 import ClickMenu from "../../../components/click-menu/ClickMenu";
@@ -27,25 +16,25 @@ import { useAudioState } from "../../../contexts/AudioContext";
 const Magnifier = MagnifierImport as unknown as ComponentType<any>;
 
 type Character = {
-    imageName: string,
-    name: string,
+    imageName: string;
+    name: string;
 };
 
 type GameScreenProps = {
-    gameImageSrc: string,
-    gameSlug: string,
-    gameStarted: boolean,
-}
+    gameImageSrc: string;
+    gameSlug: string;
+    gameStarted: boolean;
+};
 
 type Marker = {
-    x: number,
-    y: number,
-    character: string,
+    x: number;
+    y: number;
+    character: string;
 };
 
 type Timer = {
-    minutes: number,
-    seconds: number,
+    minutes: number;
+    seconds: number;
 };
 
 const GameScreen = ({
@@ -61,7 +50,7 @@ const GameScreen = ({
     const [playerWon, setPlayerWon] = useState(true);
     const [time, setTime] = useState({
         minutes: 0,
-        seconds: 0
+        seconds: 0,
     });
     const navigate = useNavigate();
     const audioState = useAudioState();
@@ -84,14 +73,16 @@ const GameScreen = ({
     // Handle founded characters.
     useEffect(() => {
         if (fetcher.data?.success) {
-            const isAlreadyFound = foundCharacters.includes(fetcher.data.foundCharacter);
+            const isAlreadyFound = foundCharacters.includes(
+                fetcher.data.foundCharacter,
+            );
             if (isAlreadyFound) {
                 return;
             } else {
-                setFoundCharacters((prevCharacters) => ([
+                setFoundCharacters((prevCharacters) => [
                     ...prevCharacters,
                     fetcher.data.foundCharacter,
-                ]))
+                ]);
             }
         }
     }, [fetcher.data]);
@@ -99,14 +90,14 @@ const GameScreen = ({
     // Check the actions.success field, if true push the successfull coordinate to the markers array.
     useEffect(() => {
         if (fetcher?.data?.success) {
-            setMarkers((prevMarkers) => ([
+            setMarkers((prevMarkers) => [
                 ...prevMarkers,
                 {
                     x: fetcher.data.x,
                     y: fetcher.data.y,
                     character: fetcher?.data?.foundCharacter,
-                }
-            ]));
+                },
+            ]);
         }
     }, [fetcher.data]);
 
@@ -121,81 +112,94 @@ const GameScreen = ({
 
         if (fetcher.data) {
             if (fetcher.data.success) {
-                AudioManager.playSoundEffect("correctGuess", audioState?.volume);
+                AudioManager.playSoundEffect(
+                    "correctGuess",
+                    audioState?.volume,
+                );
             } else {
                 AudioManager.playSoundEffect("wrongGuess", audioState.volume);
             }
         }
     }, [fetcher.data, foundCharacters]);
 
-    return <AnimatePresence>
-        {gameStarted && (
-            <motion.section
-                key="game-screen"
-                className={styles["game-screen"]}
-                initial={{ scale: 0, opacity: 0, }}
-                animate={{ scale: 1, opacity: 1, }}
-                exit={{ scale: 0, opacity: 0, }}
-            >
-                <Notification />
-                <header className={styles["header"]}>
-                    <div className={styles["empty"]}></div>
-                    <Timer
-                        playerWon={playerWon}
-                        getTime={getTime}
-                    />
-                    <div className={styles["characters"]}>
-                        <h2>Can you find them?</h2>
-                        <div className={styles["container"]}>
-                            {characters.map((character) => {
-                                return <div
-                                    key={character.name}
-                                    className={styles["character"]}
-                                >
-                                    <h3
-                                        className={styles["character-name"]}
-                                    >
-                                        {character.name}
-                                    </h3>
-                                    <div className={styles["image-wrapper"]}>
-                                        <img
-                                            className={`${styles["image"]} ${foundCharacters.includes(character.name) && styles["found"]}`}
-                                            src={`/images/games/${gameSlug}/characters/${character.imageName}`}
-                                            alt={character.name}
-                                        />
-                                        {foundCharacters.includes(character.name) ? <span className="material-symbols-sharp">check</span> : null}
-                                    </div>
-                                </div>
-                            })}
-                        </div>
-                    </div>
-                    {!playerWon && (
-                        <QuitGameBox
-                            quitGameFunction={quitGame}
-                        />
-                    )}
-                </header>
-                <ClickMenu
-                    foundCharacters={foundCharacters}
-                />
-                <div
-                    style={{ position: "relative" }}
-                    className={styles["image-wrapper"]}
+    return (
+        <AnimatePresence>
+            {gameStarted && (
+                <motion.section
+                    key="game-screen"
+                    className={styles["game-screen"]}
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0, opacity: 0 }}
                 >
-                    <Magnifier
-                        height="100%"
-                        src={gameImageSrc}
-                        mgShowOverflow={true}
-                        className={styles["main-game-image"]}
-                    />
-                    <Marker markers={markers} />
-                </div>
-            </motion.section>
-        )}
-        {playerWon && (
-            <WinScreen timer={time} />
-        )}
-    </AnimatePresence>
-}
+                    <Notification />
+                    <header className={styles["header"]}>
+                        <div className={styles["empty"]}></div>
+                        <Timer
+                            playerWon={playerWon}
+                            getTime={getTime}
+                        />
+                        <div className={styles["characters"]}>
+                            <h2>Can you find them?</h2>
+                            <div className={styles["container"]}>
+                                {characters.map((character) => {
+                                    return (
+                                        <div
+                                            key={character.name}
+                                            className={styles["character"]}
+                                        >
+                                            <h3
+                                                className={
+                                                    styles["character-name"]
+                                                }
+                                            >
+                                                {character.name}
+                                            </h3>
+                                            <div
+                                                className={
+                                                    styles["image-wrapper"]
+                                                }
+                                            >
+                                                <img
+                                                    className={`${styles["image"]} ${foundCharacters.includes(character.name) && styles["found"]}`}
+                                                    src={`/images/games/${gameSlug}/characters/${character.imageName}`}
+                                                    alt={character.name}
+                                                />
+                                                {foundCharacters.includes(
+                                                    character.name,
+                                                ) ? (
+                                                    <span className="material-symbols-sharp">
+                                                        check
+                                                    </span>
+                                                ) : null}
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                        {!playerWon && (
+                            <QuitGameBox quitGameFunction={quitGame} />
+                        )}
+                    </header>
+                    <ClickMenu foundCharacters={foundCharacters} />
+                    <div
+                        style={{ position: "relative" }}
+                        className={styles["image-wrapper"]}
+                    >
+                        <Magnifier
+                            height="100%"
+                            src={gameImageSrc}
+                            mgShowOverflow={true}
+                            className={styles["main-game-image"]}
+                        />
+                        <Marker markers={markers} />
+                    </div>
+                </motion.section>
+            )}
+            {playerWon && <WinScreen timer={time} />}
+        </AnimatePresence>
+    );
+};
 
 export default GameScreen;

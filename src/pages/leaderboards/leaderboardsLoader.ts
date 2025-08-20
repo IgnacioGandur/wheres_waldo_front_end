@@ -4,7 +4,7 @@ const leaderboardLoader = async () => {
         const fetchOptions: RequestInit = {
             method: "GET",
             headers: {
-                "Content-Type": "appliaction/json"
+                "Content-Type": "appliaction/json",
             },
         };
 
@@ -15,8 +15,8 @@ const leaderboardLoader = async () => {
         return {
             error: true,
             message: "Server error. We were not able to retrieve leaderboards.",
-        }
+        };
     }
-}
+};
 
 export default leaderboardLoader;

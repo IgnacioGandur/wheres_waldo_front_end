@@ -7,9 +7,10 @@ const appLoader = async () => {
     } catch (error) {
         return {
             error: true,
-            message: "Server error. We were not able to reach the back end, this means that most of the app will not work, please try again later...",
-        }
+            message:
+                "Server error. We were not able to reach the back end, this means that most of the app will not work, please try again later...",
+        };
     }
-}
+};
 
 export default appLoader;

@@ -1,4 +1,4 @@
-import type { ActionFunctionArgs } from "react-router"
+import type { ActionFunctionArgs } from "react-router";
 const gameAction = async ({ request, params }: ActionFunctionArgs) => {
     try {
         const formData = await request.formData();
@@ -15,28 +15,28 @@ const gameAction = async ({ request, params }: ActionFunctionArgs) => {
                     },
                     body: JSON.stringify({
                         username,
-                        time
-                    })
-                }
+                        time,
+                    }),
+                };
                 const scoreResponse = await fetch(fetchUrl, fetchOptions);
                 const scoreResult = await scoreResponse.json();
-                console.log("the content of scoreResult is:", scoreResult);
                 if (scoreResult.success) {
                     return {
                         scoreCreated: true,
                         message: scoreResult.message,
-                    }
+                    };
                 } else {
                     return {
                         scoreCreationFailed: true,
                         inputErrors: scoreResult,
-                    }
+                    };
                 }
             } catch (error) {
                 return {
                     error: true,
-                    message: "Server error. We were not able to submit your score, please try again later...",
-                }
+                    message:
+                        "Server error. We were not able to submit your score, please try again later...",
+                };
             }
         }
         const renderedImageWidth = formData.get("renderedImageWidth");
@@ -58,7 +58,7 @@ const gameAction = async ({ request, params }: ActionFunctionArgs) => {
                 relativeClickY,
                 selectedCharacter,
                 selectedCharacterImage,
-            })
+            }),
         };
         const fetchResponse = await fetch(fetchUrl, fetchOptions);
         const fetchResult = await fetchResponse.json();
@@ -66,9 +66,10 @@ const gameAction = async ({ request, params }: ActionFunctionArgs) => {
     } catch (error) {
         return {
             error: true,
-            message: "Server error. We were not able to check your pick, try again later please.",
-        }
+            message:
+                "Server error. We were not able to check your pick, try again later please.",
+        };
     }
-}
+};
 
 export default gameAction;

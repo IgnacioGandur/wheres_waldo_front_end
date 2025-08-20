@@ -8,9 +8,7 @@ class AudioManager {
     audios: AudioObjects;
 
     constructor() {
-        let audios: AudioObjects = {
-
-        };
+        let audios: AudioObjects = {};
 
         for (let i = 0; i < audioData.soundEffects.length; i++) {
             const current = audioData.soundEffects[i];
@@ -29,7 +27,6 @@ class AudioManager {
         this.audios[soundEffect].volume = volume;
         this.audios[soundEffect].play();
     }
-
 }
 
 export default new AudioManager();

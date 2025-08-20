@@ -68,8 +68,7 @@
         display: grid;
         grid-template-areas:
             "ppf date time-title"
-            "ppf username time"
-        ;
+            "ppf username time";
         grid-template-columns: max-content 1fr max-content;
         grid-template-rows: max-content 2rem;
         align-items: center;
@@ -92,7 +91,7 @@
         }
 
         .date {
-            opacity: .5;
+            opacity: 0.5;
             grid-area: date;
             align-self: flex-end;
         }
@@ -138,7 +137,7 @@
     }
 }
 
-@media (max-width:1024px) {
+@media (max-width: 1024px) {
     .leaderboard {
         .header {
             h2 {

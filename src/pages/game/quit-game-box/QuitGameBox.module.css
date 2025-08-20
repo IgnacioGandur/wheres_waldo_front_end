@@ -33,8 +33,7 @@
         display: grid;
         grid-template-areas:
             "message message"
-            "confirm cancel"
-        ;
+            "confirm cancel";
         grid-template-columns: 1fr 1fr;
         gap: var(--size-small);
         padding: var(--size-small);
@@ -42,7 +41,6 @@
         background-color: black;
         color: var(--color-font);
     }
-
 
     .message {
         grid-area: message;

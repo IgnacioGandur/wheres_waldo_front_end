@@ -26,14 +26,12 @@
             display: grid;
             grid-template-areas:
                 "icon title"
-                "details details"
-            ;
+                "details details";
             grid-template-columns: 50px 1fr;
             grid-template-rows: 50px 1fr;
             align-self: stretch;
             gap: var(--size-medium);
             opacity: 0;
-
 
             .icon {
                 grid-area: icon;
@@ -80,7 +78,6 @@
                     border: 2px solid var(--color-font);
                 }
             }
-
         }
 
         .section:nth-child(5) {
@@ -98,8 +95,7 @@
             display: grid;
             grid-template-areas:
                 "icon title"
-                "tools tools"
-            ;
+                "tools tools";
             grid-template-columns: 50px 1fr;
             align-self: stretch;
             align-items: center;
@@ -184,7 +180,7 @@
                         font-family: var(--font-secondary);
                         padding: var(--size-small);
 
-                        >* {
+                        > * {
                             color: var(--color-font);
                             text-align: center;
                         }

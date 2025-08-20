@@ -14,7 +14,8 @@
     }
 
     .star:nth-child(even) {
-        animation: appearStar 2.5s ease-in-out forwards 3s infinite alternate-reverse;
+        animation: appearStar 2.5s ease-in-out forwards 3s infinite
+            alternate-reverse;
     }
 }
 

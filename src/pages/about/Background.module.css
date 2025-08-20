@@ -47,14 +47,12 @@
 
     80% {
         transform: translateY(-10%);
-
     }
 
     100% {
         transform: translateY(0);
     }
 }
-
 
 @keyframes appearBottom {
     0% {
@@ -75,7 +73,6 @@
 
     80% {
         transform: translateY(10%);
-
     }
 
     100% {

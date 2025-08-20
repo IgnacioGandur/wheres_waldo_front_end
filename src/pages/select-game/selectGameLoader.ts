@@ -4,7 +4,7 @@ const selectGameLoader = async () => {
         const fetchOptions: RequestInit = {
             method: "GET",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
             },
         };
 
@@ -14,8 +14,8 @@ const selectGameLoader = async () => {
         if (!gamesResult.success) {
             return {
                 fetchError: true,
-                message: gamesResult.message
-            }
+                message: gamesResult.message,
+            };
         }
 
         return gamesResult;
@@ -23,8 +23,8 @@ const selectGameLoader = async () => {
         return {
             fail: true,
             error: "Server error. We were not able to reach the backend.",
-        }
+        };
     }
-}
+};
 
 export default selectGameLoader;

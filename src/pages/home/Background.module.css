@@ -17,16 +17,15 @@
     }
 
     33% {
-
         transform: scale(1.2);
     }
 
     66% {
-        transform: scale(.9);
+        transform: scale(0.9);
     }
 
     100% {
         transform: scale(1);
-        opacity: .5;
+        opacity: 0.5;
     }
 }

@@ -38,18 +38,18 @@ const router = createBrowserRouter([
                 path: "/games",
                 Component: SelectGame,
                 loader: selectGameLoader,
-                hydrateFallbackElement: <LoaderComponent
-                    loadMessage="Loading available games, please wait..."
-                />
+                hydrateFallbackElement: (
+                    <LoaderComponent loadMessage="Loading available games, please wait..." />
+                ),
             },
             {
                 id: "current-game",
                 path: "/games/:gameSlug",
                 Component: Game,
                 loader: gameLoader,
-                hydrateFallbackElement: <LoaderComponent
-                    loadMessage="We are loding your game, please wait..."
-                />,
+                hydrateFallbackElement: (
+                    <LoaderComponent loadMessage="We are loding your game, please wait..." />
+                ),
                 action: gameAction,
             },
             {
@@ -57,16 +57,16 @@ const router = createBrowserRouter([
                 path: "/leaderboards",
                 Component: Leaderboards,
                 loader: leaderboardsLoader,
-                hydrateFallbackElement: <LoaderComponent
-                    loadMessage="Loading leaderboards, please wait..."
-                />
+                hydrateFallbackElement: (
+                    <LoaderComponent loadMessage="Loading leaderboards, please wait..." />
+                ),
             },
             {
                 path: "/about",
                 Component: About,
-            }
-        ]
-    }
-])
+            },
+        ],
+    },
+]);
 
 export default router;

@@ -15,24 +15,24 @@ const MusicPlayer = () => {
         if (audioDispatcher) {
             audioDispatcher({
                 type: "updateVolume",
-                updatedVolume: Number(e.target.value)
-            })
+                updatedVolume: Number(e.target.value),
+            });
         }
     };
 
     const previousSong = () => {
         if (audioDispatcher) {
             audioDispatcher({
-                type: "previousSong"
-            })
+                type: "previousSong",
+            });
         }
     };
 
     const nextSong = () => {
         if (audioDispatcher) {
             audioDispatcher({
-                type: "nextSong"
-            })
+                type: "nextSong",
+            });
         }
     };
 
@@ -62,9 +62,11 @@ const MusicPlayer = () => {
     useEffect(() => {
         if (!audioDispatcher) return;
 
-        const randomSongIndex = Math.floor(Math.random() * audioData.songs.length);
+        const randomSongIndex = Math.floor(
+            Math.random() * audioData.songs.length,
+        );
         audioDispatcher({ type: "startPlayingRandomSong", randomSongIndex });
-    }, [])
+    }, []);
 
     // Update the audio tag source when the user plays the next/previous song
     useEffect(() => {
@@ -74,11 +76,11 @@ const MusicPlayer = () => {
         audio.src = audioData.songs[audioState.currentSongIndex].route || "";
         audio.load();
         if (audioState.isPlaying) {
-            audio.play()
+            audio
+                .play()
                 // Silence promise error
-                .catch(() => { })
+                .catch(() => {});
         }
-
     }, [audioState?.currentSongIndex]);
 
     useEffect(() => {
@@ -87,15 +89,14 @@ const MusicPlayer = () => {
 
         const playNext = () => {
             audioDispatcher?.({ type: "nextSong" });
-        }
+        };
 
         audio.addEventListener("ended", playNext);
 
         return () => {
             audio.removeEventListener("ended", playNext);
-        }
+        };
     }, [audioState?.currentSongIndex]);
-
 
     // Sync the UI with the song playing state.
     useEffect(() => {
@@ -113,68 +114,72 @@ const MusicPlayer = () => {
         return () => {
             audio.removeEventListener("play", handlePlay);
             audio.removeEventListener("pause", handlePause);
-        }
+        };
     }, [audioState?.currentSongIndex]);
 
-    return audioState && <div className={styles["music-player"]}>
-        <div className={styles["change-songs-buttons"]}>
-            <button
-                onClick={previousSong}
-                className={styles["previous-song"]}
-                title="Previous song"
-            >
-                <span className="material-symbols-sharp">
-                    skip_previous
-                </span>
-            </button>
-            <button
-                onClick={nextSong}
-                className={styles["next-song"]}
-                title="Next song"
-            >
-                <span className="material-symbols-sharp">
-                    skip_next
-                </span>
-            </button>
-        </div>
-        <button
-            title="Toggle music play"
-            onClick={toggleMusic}
-            className={styles["play-button"]}
-        >
-            <span className="material-symbols-sharp">
-                {isPlaying ? "pause" : "play_arrow"}
-            </span>
-        </button>
-        <audio
-            ref={audioRef}
-            autoPlay={true}
-            key={audioState.currentSongIndex}
-            src={audioData.songs[audioState.currentSongIndex].route}
-        />
-        <div className={styles["volume-and-song"]}>
-            <div className={styles["audio-controls"]}>
-                <input
-                    title="Music volume"
-                    className={styles["slider"]}
-                    type="range"
-                    min="0"
-                    max="1"
-                    step="0.1"
-                    value={audioState?.volume}
-                    onChange={handleVolumeChange}
+    return (
+        audioState && (
+            <div className={styles["music-player"]}>
+                <div className={styles["change-songs-buttons"]}>
+                    <button
+                        onClick={previousSong}
+                        className={styles["previous-song"]}
+                        title="Previous song"
+                    >
+                        <span className="material-symbols-sharp">
+                            skip_previous
+                        </span>
+                    </button>
+                    <button
+                        onClick={nextSong}
+                        className={styles["next-song"]}
+                        title="Next song"
+                    >
+                        <span className="material-symbols-sharp">
+                            skip_next
+                        </span>
+                    </button>
+                </div>
+                <button
+                    title="Toggle music play"
+                    onClick={toggleMusic}
+                    className={styles["play-button"]}
+                >
+                    <span className="material-symbols-sharp">
+                        {isPlaying ? "pause" : "play_arrow"}
+                    </span>
+                </button>
+                <audio
+                    ref={audioRef}
+                    autoPlay={true}
+                    key={audioState.currentSongIndex}
+                    src={audioData.songs[audioState.currentSongIndex].route}
                 />
+                <div className={styles["volume-and-song"]}>
+                    <div className={styles["audio-controls"]}>
+                        <input
+                            title="Music volume"
+                            className={styles["slider"]}
+                            type="range"
+                            min="0"
+                            max="1"
+                            step="0.1"
+                            value={audioState?.volume}
+                            onChange={handleVolumeChange}
+                        />
+                    </div>
+                    <a
+                        title="Current song"
+                        href={audioData.songs[audioState.currentSongIndex].link}
+                        target="_blank"
+                        className={styles["current-song-title"]}
+                    >
+                        {audioData.songs[audioState?.currentSongIndex].name}
+                    </a>
+                </div>
             </div>
-            <a
-                title="Current song"
-                href={audioData.songs[audioState.currentSongIndex].link}
-                target="_blank"
-                className={styles["current-song-title"]}
-            >
-                {audioData.songs[audioState?.currentSongIndex].name}
-            </a>
-        </div>
-    </div>
-}
+        )
+    );
+};
 
 export default MusicPlayer;

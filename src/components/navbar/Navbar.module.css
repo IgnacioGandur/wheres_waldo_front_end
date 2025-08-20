@@ -85,7 +85,7 @@
     }
 }
 
-@media screen and (max-width:600px) {
+@media screen and (max-width: 600px) {
     .navbar {
         justify-content: center;
 
@@ -110,7 +110,7 @@
     }
 }
 
-@media screen and (min-width:599px) and (max-width:1024px) {
+@media screen and (min-width: 599px) and (max-width: 1024px) {
     .navbar {
         .links {
             position: relative;

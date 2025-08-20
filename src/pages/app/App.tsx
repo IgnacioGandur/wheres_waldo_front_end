@@ -9,7 +9,9 @@ const App = () => {
     const loaderData = useRouteLoaderData("main");
     // Add "notranslate" class to all goole icons so they don't break if user translates the page.
     useEffect(() => {
-        const icons: NodeListOf<HTMLSpanElement> = document.querySelectorAll(".material-symbols-sharp");
+        const icons: NodeListOf<HTMLSpanElement> = document.querySelectorAll(
+            ".material-symbols-sharp",
+        );
         icons.forEach((icon: HTMLSpanElement) => {
             icon.classList.add("notranslate");
         });
@@ -32,12 +34,14 @@ const App = () => {
 
         return () => document.removeEventListener("keydown", handleEscapeKey);
     }, []);
-    return <>
-        <Navbar />
-        {loaderData?.error && <ServerError message={loaderData.message} />}
-        <Outlet />
-        <Footer />
-    </>
-}
+    return (
+        <>
+            <Navbar />
+            {loaderData?.error && <ServerError message={loaderData.message} />}
+            <Outlet />
+            <Footer />
+        </>
+    );
+};
 
 export default App;

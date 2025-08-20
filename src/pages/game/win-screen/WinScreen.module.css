@@ -59,8 +59,7 @@
             display: grid;
             grid-template-areas:
                 "label label"
-                "input submitButton"
-            ;
+                "input submitButton";
             grid-template-columns: 1fr max-content;
             grid-template-rows: 1fr max-content;
             gap: var(--size-very-small);
@@ -83,7 +82,7 @@
                 position: absolute;
                 right: 0;
                 font-style: italic;
-                font-size: .75rem;
+                font-size: 0.75rem;
                 font-weight: 300;
                 top: 50%;
                 transform: translateY(-50%);

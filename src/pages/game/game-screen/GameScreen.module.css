@@ -27,7 +27,7 @@
         z-index: 100;
         background-color: var(--color-black-dimmed-strong);
 
-        >*>h2 {
+        > * > h2 {
             font-family: var(--font-secondary);
             font-weight: var(--font-normal-thickness);
         }
@@ -75,7 +75,8 @@
                         transform: translate(-50%, -50%);
                         white-space: nowrap;
                         background-color: var(--color-black-dimmed-strong);
-                        padding: var(--size-very-small) calc(var(--size-very-small) * 2);
+                        padding: var(--size-very-small)
+                            calc(var(--size-very-small) * 2);
                         opacity: 0;
                         transition: var(--transition-normal);
                     }
@@ -134,33 +135,33 @@
                     }
                 }
 
-                .character:hover+*,
-                .character:focus+*,
-                .character:focus-visible+* {
+                .character:hover + *,
+                .character:focus + *,
+                .character:focus-visible + * {
                     .image-wrapper {
                         transform: translateZ(125px) scale(1.12);
                     }
                 }
 
-                .character:hover+*+*,
-                .character:focus+*+*,
-                .character:focus-visible+*+* {
+                .character:hover + * + *,
+                .character:focus + * + *,
+                .character:focus-visible + * + * {
                     .image-wrapper {
                         transform: translateZ(50px) scale(1.07);
                     }
                 }
 
-                .character:has(+*:hover),
-                .character:has(+*:focus),
-                .character:has(+*:focus-visible) {
+                .character:has(+ *:hover),
+                .character:has(+ *:focus),
+                .character:has(+ *:focus-visible) {
                     .image-wrapper {
                         transform: translateZ(125px) scale(1.12);
                     }
                 }
 
-                .character:has(+*+*:hover),
-                .character:has(+*+*:focus),
-                .character:has(+*+*:focus-visible) {
+                .character:has(+ * + *:hover),
+                .character:has(+ * + *:focus),
+                .character:has(+ * + *:focus-visible) {
                     .image-wrapper {
                         transform: translateZ(50px) scale(1.07);
                     }
@@ -207,11 +208,9 @@
 
             .empty {
                 display: none;
-                ;
             }
 
             .characters {
-
                 .container {
                     flex-wrap: wrap;
                     pointer-events: none;

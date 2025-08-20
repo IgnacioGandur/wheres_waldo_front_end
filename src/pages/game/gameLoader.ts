@@ -14,16 +14,16 @@ const gameLoader = async ({ params }: LoaderFunctionArgs) => {
         if (!gameResult.success) {
             return {
                 fetchError: true,
-                message: gameResult.message
-            }
+                message: gameResult.message,
+            };
         }
         return gameResult;
     } catch (error) {
         return {
             fail: true,
-            error: "Server error. We were not able to reach the backend."
-        }
+            error: "Server error. We were not able to reach the backend.",
+        };
     }
-}
+};
 
 export default gameLoader;
