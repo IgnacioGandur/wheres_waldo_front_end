@@ -20,9 +20,17 @@ const gameAction = async ({ request, params }: ActionFunctionArgs) => {
                 }
                 const scoreResponse = await fetch(fetchUrl, fetchOptions);
                 const scoreResult = await scoreResponse.json();
-                return {
-                    scoreCreated: true,
-                    message: scoreResult.message,
+                console.log("the content of scoreResult is:", scoreResult);
+                if (scoreResult.success) {
+                    return {
+                        scoreCreated: true,
+                        message: scoreResult.message,
+                    }
+                } else {
+                    return {
+                        scoreCreationFailed: true,
+                        inputErrors: scoreResult,
+                    }
                 }
             } catch (error) {
                 return {

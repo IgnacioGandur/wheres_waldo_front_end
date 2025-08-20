@@ -1,0 +1,15 @@
+.input-errors {
+    width: 100%;
+    flex: 1;
+    background-color: var(--color-error-dimmed);
+    border: 1px solid var(--color-error);
+    padding: var(--size-very-small);
+    gap: var(--size-very-small);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    .errors-container {
+        list-style-type: none;
+    }
+}

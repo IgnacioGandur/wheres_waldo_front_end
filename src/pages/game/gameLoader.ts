@@ -11,7 +11,6 @@ const gameLoader = async ({ params }: LoaderFunctionArgs) => {
         };
         const gameResponse = await fetch(gameUrl, fetchOptions);
         const gameResult = await gameResponse.json();
-        console.log("the content of gameResult is:", gameResult);
         if (!gameResult.success) {
             return {
                 fetchError: true,

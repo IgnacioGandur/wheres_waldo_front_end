@@ -10,7 +10,6 @@ const leaderboardLoader = async () => {
 
         const leaderboardsResponse = await fetch(leaderboardsUrl, fetchOptions);
         const leaderboardResult = await leaderboardsResponse.json();
-        console.log("the content of leaderboardResult is:", leaderboardResult);
         return leaderboardResult;
     } catch (error) {
         return {
