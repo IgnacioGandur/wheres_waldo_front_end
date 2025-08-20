@@ -69,8 +69,11 @@
                 font-weight: var(--font-normal-thickness);
                 position: relative;
                 font-weight: 700;
+                display: flex;
+                flex-direction: column;
+                gap: var(--size-very-small);
 
-                span {
+                .input-constraints {
                     i {
                         font-weight: 300;
                     }
@@ -84,8 +87,7 @@
                 font-style: italic;
                 font-size: 0.75rem;
                 font-weight: 300;
-                top: 50%;
-                transform: translateY(-50%);
+                top: 0;
             }
 
             .input-wrapper {

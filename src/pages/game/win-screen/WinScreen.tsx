@@ -93,8 +93,10 @@ const WinScreen = ({ timer }: WinScreenProps) => {
                                     className={styles["label"]}
                                     htmlFor="username"
                                 >
-                                    Submit your time!{" "}
-                                    <span>
+                                    <span className={styles["text"]}>
+                                        Submit your time!
+                                    </span>
+                                    <span className={styles["input-constraints"]}>
                                         <i>
                                             (Only letters and numbers, between
                                             3-30 characters)

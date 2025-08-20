@@ -47,7 +47,7 @@ const GameScreen = ({
     const characters = loaderData.game.data.characters as Character[];
     const [foundCharacters, setFoundCharacters] = useState<string[]>([]);
     const [markers, setMarkers] = useState<Marker[]>([]);
-    const [playerWon, setPlayerWon] = useState(true);
+    const [playerWon, setPlayerWon] = useState(false);
     const [time, setTime] = useState({
         minutes: 0,
         seconds: 0,
