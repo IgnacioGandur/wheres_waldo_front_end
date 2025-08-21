@@ -2,7 +2,7 @@
     width: 100%;
     height: fit-content;
     align-self: center;
-    flex: 1;
+    flex-grow:0;
     background-color: var(--color-error-dimmed);
     border: 1px solid var(--color-error);
     padding: var(--size-very-small);
